@@ -1,0 +1,305 @@
+Instructions:
+1. Join on time
+	Late joining disrupts the flow and your own understanding
+
+2. Stay focused during session
+	- Keep your mic mute unless speaking
+	- Avoid parallel work or distractions
+
+3. Ask Questions at right momemnt
+	- Note down your doubts while the topic is being explained
+	- Ask questions at logical end of a topic, not in the middle
+
+4. Daily Practice is mandatory
+	- Practice what is taught every day
+	- Even 30-40 minutes daily is better than long, irregular study
+
+5. Complete Assigned exercises
+	- Exercises will be given after each session
+	- Treat them as non-optional - they are part of the learning process
+
+6. Be consistent and committed
+	- Learning compounds with consistency
+	- Missing sessions or practice will directly affects your progress
+
+This is not just a class - it is a transformation journey.
+
+
+
+
+
+=========================================================
+29/01/2026
+=========================================================
+
+VCS - Version Control System
+
+Tool that helps software teams manage changes to the source code over time.
+- every modification made to the code 
+- developers can go back to earlier versions of the code and compare changes.
+
+Two types of VCS
+1. Centralized VCS
+
+	single server where all versioned files are stored.
+
+	Problems:
+	- If central server fails, -- all history may be lost
+	- collaboration is limited when disconnected from the server
+
+Tool: SVN
+
+2. Decentralized VCS
+
+	Every developer has local copy of entire repository, including history. 
+	Changes can be made locally and later pushed to the central repository when ready.
+ 
+ Pros:
+ - Every dev has full copy of project's history
+ - work can be continued offline
+ - more robust against server failures.
+
+ Cons:
+ - More disk space
+
+ Tool: Git,
+
+
+ Git
+
+ - Distributed - Every dev has a full copy of the repository
+ - Fast and efficient for handling large projects
+ - supports branching and merging.
+
+ How git stores data?
+
+ 1. Snapshot based storage (git)
+
+ 	takes snapshot of entire project directory at time of each commit.
+
+ 	commit1 --> snapshot
+
+ 	Faster
+
+
+
+ 2. Delta - based storage (C - VCS)
+
+ 	initial change --> delta1 --> delta2 --> delta3
+
+ 	space efficient --> very slow down performance
+
+
+Git file system
+
+Three zones
+
+Working directory  -->  Staging area  --> Repository (Git DB)
+	(files)					(index)				(.git)
+file - change 			ready to commit 	final submitted record
+
+
+git --version
+git init
+git status
+git add <file_name> -- to add file in staging area
+git commit -m "<commit message>"
+git log -- Display all commits
+git checkout <branch_name> -- switch to different branch
+
+git push origin master --> to push changes to branch (remote repository)
+git  pull origin master --> to pull changes to branch (from remote repository)
+
+
+
+git remote add origin https://github.com/dhruvikp/NMIT_Repo1.git
+
+git remote remove origin
+
+
+
+https://github.com/dhruvikp/NMIT_Repo1.git
+
+https://github.com/dhruvikp/NMIT_JFSD_WORK.git
+
+
+sujith --> feature1,feature2
+
+Renuka --> feature2, feature3
+
+
+Git stash --> temporary locker/storage for your unfinished work.
+
+- Takes all your uncommitted changes
+- save them in hidden place (git's memory)
+- makes your working directory clean again
+
+
+Questions:
+
+you have edited 3 files, but want to commit only 1 file.
+which command you will use?
+
+switch to different branch?
+ONce file is under staged area --> move it back to working directory?
+
+git reset HEAD~4
+
+=========================================================
+28/01/2026 (PHASE 1 - START)
+=========================================================
+
+Agile:
+
+SDLC - Software Development Lifecycle
+
+SDLC is the process of planning, creating and testing and deploying software. It ensures that software is built systematically and meets the needs of the users.
+
+Basic steps involved:
+
+Waterfall model:
+	1. Requirement Gathering and Analysis
+
+	2. System Design:
+
+	3. Implementation (Coding)
+
+	4. Testing
+
+	5. Deployment
+
+	6. Maintenance
+
+Problems:
+	1. Rigidity --> if custoer requests new feature in middle of development, its hard to implement.
+
+	2. Late testing
+
+	3. Customer involvement - at end
+
+Agile
+
+17 people, 2001, 
+
+Agile manifesto document
+	4 key values
+	12 priciples 
+
+4 values:
+	1. Individuals and Interactions over processes and tools
+	2. Working software over comprehensive documentations
+	3. Customer collaboration over contact negotiation
+	4. Responding to change over following plan
+
+12 Principles
+	1. Customer Satisfaction - early and continious delivery of valuable software
+	2. Welcoming change - Making changes during software development
+	3. Delivery working software requently - from couple of weeks to couple fo months with preference to the shorter timescale.
+	4. Collaboration - Business people and developers must work together daily thorugh out the project delivery
+	5. Motivation - Build projects around motivated individuals. Give then environment and support they need, and trust them to get job done.
+	6. Face to face conversations - 
+	7. Measure the progress as per working software  - 
+	8. Maintain constant pace - 
+	9. Monitoring - Continiue attention to the technical excellence and good design enhance agility
+	10. Simplicity - 
+	11. Self organized team - 
+	12. Review work regularly - process/work/behaviour identify how to make it better, adjust accordingly.
+
+
+Scrum:
+
+Sprint -  Product is built in series of repetition called sprints.  It breaks down  big complex projects into bite-sized pieces. It makes project more managable, allows team to ship high quality, frequent delivery.
+
+Short, time boxed perioed --> 
+
+Spring - 15 days/ 30 days
+
+Product backlog
+	Product backlog is list of all features, bugs, improvements needed for the product, prioritize by importance.
+
+
+
+Sprint backlog
+	List of task , features, bugs, improvements needs to be completed during sprint
+
+
+Scrum Roles:
+	1. Scrum master
+		Scrum master helps team stay focused on their sprint goals and removes any obstacles that are slowing down,
+		All meetings or scrum ceremonies has been followed or not.
+
+	2. Product owner
+		Product owner decides priority of the items in the backlog
+
+	3. Development team
+		Developers + testers work together
+
+Scrum ceremonies 
+================
+	1. Sprint planning
+		team meets at start of the sprint to decide that they will work on implementing which features in next two weeks.
+
+	2. Daily scrum
+		Every morning, 15 mins, to discuss what they did yesterday, what they plan to do today and roadblocks
+
+	3. Sprint review 
+		just before sprint ends, developer/qa demo it to PO.
+
+	4. Sprint retrospective
+		After sprint ends, what went well, what didn't , how they can be improved in next sprint.
+
+	5. Backlog refinement
+		Product owner and team review the backlog and make sure that each item is clear and ready for the next sprint.
+
+Working aggrements:
+Set of rules that the scrum team agrees to follow smooth collboration.
+
+
+1. Definition of Ready
+	
+	Is the story read to taken up in the next sprint?
+
+2. Definition of Done
+
+	-- implemented
+	-- Demoed
+	- Written unit test cases
+	- deployed in qa env
+
+
+Questions:
+1. Yashwanth : You are scrum master:
+bhoomika is failing to attend daily scrum meeting frequently.
+
+Vishwajit --> 
+
+
+2. If team doesn't complete all items they committed to a sprint, what should happen to those incomelete items?
+	Karthik -->
+
+	return to product backlog --> and PO to prioritize in next sprint.
+	Restrospective --> mention why it was not completed? action items
+
+3. how do you prioritize product backlog? who is responsible for this priorization?
+
+4. you are seating next to one person, dhruvik
+	listing song on loud speaker , seating next to you,
+	disturbing you 
+
+	
+
+
+
+Not responding:
+Yashwanth M A
+
+
+
+
+
+
+
+
+
+
+
