@@ -27,10 +27,308 @@ This is not just a class - it is a transformation journey.
 
 
 
+=========================================================
+30/01/2026
+=========================================================
+
+DDL - Data Definition Language
+
+	Define, modify, and remove database structures.
+
+DDL works on the schema objects, not data.
+
+CREATE		-- create database/ table/ index
+ALTER		--	modify table structure
+DROP		-- Delete table or database permanently
+TRUNCATE	-- Remove all rows (faster than Delete)
+RENAME		-- Rename table
+COMMENT		-- Add comments to schema objects
+
+
+create table employee(
+	emp_id INT primary key,
+    name varchar(50) not null,
+    email varchar(100),
+    salary decimal(10,2),
+    join_date date
+);
+
+primary key --> uniqueness + not null
+not null --> mandatory column
+unique --> no duplicates are allowed
+
+
+alter table employee add department varchar(30);
+alter table employee modify salary decimal(12,2);
+alter table employee rename column name to full_name;
+alter table employee drop column department;
+
+
+truncate table employee;
+
+desc employee;
+
+DML - Data manipulation Language
+-------------------------------
+- insert, read, update, delete data inside database tables.
+
+- Works on rows (records), not structure.
+- DML can be rollbacked
+- Used 90% of the time in the real applications.
+
+
+INSERT		-- Add new records
+SELECT		-- Read data
+UPDATE		-- Modify existing data
+DELETE		-- Remove records
+
+
+INSERT INTO employee (emp_id, full_name, email, salary, join_date) 
+values (1, 'Amit Sharma', 'amit@simplilearn.com', 50000, '2023-01-10');
+
+-- Insert multiple values
+INSERT INTO employee values 
+(2, 'Neha Patel', 'neha@simplilearn.com', 60000, '2022-06-15'),
+(3, 'Raj Mehta', 'raj@simplilearn.com', 55000, '2023-06-15'),
+(4, 'Pooja verma', 'pooja@simplilearn.com', 45000, '2021-06-15');
+
+SELECT * from employee;
+select full_name, email from employee;
+select * from employee where salary > 50000;
+select * from employee where join_date > '2022-01-01';
+select * from employee order by salary desc;
+select * from employee order by salary desc limit 3;
+
+
+update employee set salary = 48000, email = 'pooja.verma@gmail.com'
+where emp_id = 4;
+delete from employee where emp_id = 3;
+
+
+GRoup By :
+Group by is used to group rows with same values and apply aggregate functions.
+
+It reduces rows
+used with:
+	- Count()
+	- Sum()
+	- AVG()
+	- Min()
+	- Max()
+
+select * from employee order by salary desc;
+-- group by  (grouping data)
+
+select salary, count(*) as total_employees from employee group by salary;
+select avg(salary) as avg_salary from employee;  -- whole table treated as one group
+select year(join_date) as join_year, count(*) as total from employee group by year(join_date);
+
+
+
+DML with Transaction
+-- ACID -- Atomicity, Consistency, Isolation, Durability
+start transaction;
+	update employee set salary = salary+5000 where emp_id =2;
+commit; -- or rollback
+
+
+Delete and Trunacate?
+delete - dml
+delete -- where condition allowed
+rollback -- delete possible
+speed -- delete is slower
+
+
+Session control statements (MySQL)
+Session control statements manage behavior of the current database session
+
+A session  = one database connection from user to MySQL
+
+A session control does NOT:
+	- change table structure
+	- change data directly
+
+It controls how commands behaves during the session.
+
+SET 		-- 	change session variable
+show 		-- 	view current settings
+use 		--  switch database
+set autocommit 	-- control auto commit
+
+System control statements (MySQL)
+--------------------------------
+	Used to control database server operations and previledges.
+
+They manage:
+	- users & permissions
+	- server state
+	- resource usage
+	- Administrative behavior
+
+Mostly used by DBAs / Admins, not used by day-to-day developers.
+
+GRANT					-- Give priviledges
+REVOKE					-- Remove privileges
+CREATE user				-- create DB user
+DROP user 				-- remove db user
+FLUSH					-- reload priviledge tables
+SHOW PROCESSLIST		-- view active sessoins
+KILL					-- Terminate session
+SET GLOBAL				-- Change server settions
+
+
+
+show processlist;
+create user 'app_user'@'localhost' IDENTIFIED BY 'Dhruvik@23589';
+grant select, insert, update on training_db.* to 'app_user'@'localhost';
+show grants for 'app_user'@'localhost';
+revoke update on training_db.* from 'app_user'@'localhost';
+drop user 'app_user'@'localhost'
+
+FLUSH privileges;
+
+
+
+Keys:
+
+Primary Key: A primary key is uniquely identifies each row in table
+	Rules:
+		-  Must be unique
+		- Can not be null
+		- Only one primary key per table
+		- Can be single or multiple columns
+
+Unique key :  A Unique key ensures no duplicate values in a column
+
+	Rules:
+		- Values must be unique
+		- Null allowed
+		- Multiple unique keys allowed per table.
+
+Foreign Key: A Foreigh key creates relationship between two tables.
+	it enforce referencial integrity.
+
+
+	department table --> parent
+	employee table --> child
+
+create table department (
+	dept_id int primary key,
+    dept_name varchar(50)
+);
+
+create table employee_new (
+	emp_id int primary key,
+    full_name varchar(50),
+    email varchar(100) unique,
+    dept_id INT,
+    foreign key (dept_id) references department(dept_id)
+)
+
+COMPOSITE KEY
+ A composite key is made up of multiple columns together.
+
+ create table employee_project(
+	emp_id INT,
+    proj_id int,
+    assigned_date date,
+    primary key (emp_id, proj_id)
+);
+
+
+MySQL Join
+
+insert into department values
+(1, 'IT'),
+(2, 'HR'),
+(3, 'FINANCE'),
+(4, 'Admin');
+
+insert into employee_new values
+(1, 'Amit sharma', 'amit@gmail.com', 1),
+(2, 'Neha Patel', 'neha@gmail.com', 2),
+(3, 'Raj Mehta', 'raj@gmail.com', Null),
+(4, 'Pooja verma', 'pooja@gmail.com', 3);
+
+Inner join -- 
+Returns only matching records from both tables
+ if no match --> row is ignored
+
+-- Inner join
+select * from employee_new e 
+inner join department d
+on e.dept_id = d.dept_id;
+
+LEFT Outer JOIN
+ 	Returns:
+ 		- All rows from LEFT Table
+ 		- Matching rows from Right table
+ 		- Null if no match
+
+Right Outer join
+	Returns:
+		- All rows from right table
+		- Matching rows from left table
+		- Null if no match
+
+select * from employee_new e
+right join department d
+on e.dept_id = d.dept_id;
+
+
+Full outer join
+	-- MySQL doesn't support full outer join directly
+	-- We simulate it using UNION
+
+	FULL JOIN = everything from both sides
+	matching + non matching
+
+select * from employee_new e 
+left join department d
+on e.dept_id = d.dept_id
+
+union
+
+select * from employee_new e
+right join department d
+on e.dept_id = d.dept_id;
+
+
+self join
+=======
+A table joined with itself
+ 
+Used when table has hierarchical or comparision data
+select * from employee;
+alter table employee add manager_id int;
+update employee set manager_id = 1 where emp_id in(1,2);
+
+select e.full_name as employee, m.full_name as manager
+from employee e 
+left join employee m 
+on e.manager_id = m.manager_id;
+
+
+Exercise 
+--------
+table 
+	product
+	category
+
+query - list of project for particular category.
+
+
+
+
+
 
 =========================================================
 29/01/2026
 =========================================================
+
+Tanish
+
+
 
 VCS - Version Control System
 
@@ -144,6 +442,55 @@ switch to different branch?
 ONce file is under staged area --> move it back to working directory?
 
 git reset HEAD~4
+
+
+merge conclicts
+happens when two people change same file, same line.  git cannot choose, so it ask human to decide.
+
+
+Exercise
+-- Install git
+--> Create git hub
+--> push some changes
+
+git url -->
+
+
+
+MySQL
+---------
+what is data?
+
+File based storage:
+ - data duplication
+ - no security
+ - hard to search
+
+ What is Database?
+ 	managed software--. store data efficiently
+
+ 	SQL(RDBMS)				NoSQL DB(MongoDB)
+
+ Format (Schema)
+
+ Table
+ columns
+ 	--> data as row
+
+ 	SQL language -->
+ 		syntax
+
+MySQL tool (RDBMS)
+
+
+	Exercise
+	1. Install MySQL DB
+	   Install MySQL Workbench
+	   
+
+	2. Go thorugh SQL Syntax 
+
+
 
 =========================================================
 28/01/2026 (PHASE 1 - START)
