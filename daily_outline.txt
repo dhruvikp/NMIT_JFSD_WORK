@@ -26,6 +26,86 @@ This is not just a class - it is a transformation journey.
 
 
 
+=========================================================
+04/02/2026
+=========================================================
+
+Avikal -- Done
+Akshay -- Done
+
+HTML
+	
+	HTML (Hypertext markup language) is standard language used to create web pages. it tells browser what contnet to show and how it is structured.
+
+
+  Concept:
+  Every HTML page follows a basic structure:
+  	- <!DOCTYPE html> --> Tells browser this is HTML page
+  	- <html> --> root element
+  	- <head> --> meta information (not visible)
+  	- <body> --> Visible content.
+
+  	Text decoration:
+  	Decorate text visually.
+  		- Underline
+  		- Overline
+  		- Line-thorugh (strike)
+  		- Removing underline from links
+
+  	Syntax: style = "text-decoration: value;"
+
+  	value 
+  		underline - Underlines text
+  		line-through - cuts text
+  		overline - Line above text
+  		none - Removes decoration
+
+
+  	Basic table structure
+  	<table>
+  		<tr>
+  			<th> header </th>
+  			<td>Data </td>
+
+  		</tr>
+  	</table>
+
+  	rowspan -- merges multiple rows into one cell.
+
+
+  HTML Form?
+
+  An HTML form is used to collect user input and send it to a server.
+
+  Common usecase:
+  	- Login/Signup
+  	- Registration
+  	- Feedback
+  	- Contact forms
+  	- Search boxes
+
+  HTML Forms use:
+  	<form> tag
+  	input elements (input, select, textarea etc)
+
+
+  <form action="submit.html" method="post">
+  	<!-- form elements -->
+  </form>
+
+
+Exercise:
+ Design student information portal using pure HTML
+
+ - Display student information
+ - Show Student records in tabular format
+ - Collect student information thorugh a form
+
+ 1. Student profile image
+ 2. Student details table
+ 		rollno, name, course, year, email...
+ 3. Course registration form
+ 		- student name, email, password, gender, skills, course selection, dob, submit, reset.
 
 =========================================================
 30/01/2026
@@ -140,6 +220,7 @@ speed -- delete is slower
 
 
 Session control statements (MySQL)
+----------------------------
 Session control statements manage behavior of the current database session
 
 A session  = one database connection from user to MySQL
@@ -237,6 +318,7 @@ COMPOSITE KEY
 
 
 MySQL Join
+--------
 
 insert into department values
 (1, 'IT'),
@@ -315,7 +397,7 @@ table
 	product
 	category
 
-query - list of project for particular category.
+  - list of project for particular category.
 
 
 
