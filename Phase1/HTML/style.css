@@ -1,0 +1,101 @@
+.info {
+    color: blue;
+}
+
+.box {
+    color:blue;
+    background-color: lightcyan ;
+    border: 2px solid red;
+}
+
+.special {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.child {
+    border: inherit;
+}
+
+.parent {
+    border: 2px dashed green;
+}
+
+#mainTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: blueviolet;
+}
+
+input[type="text"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 14px;
+}
+
+input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.container > p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: antiquewhite;
+}
+
+.btn {
+    padding: 10px 15px;
+    background-color: blue;
+    color: white;
+    border: none;
+}
+
+.btn:hover {
+    background-color: green;
+    font-size: 30px;
+}
+
+.btn:active {
+    background-color: red;
+}
+
+input:focus {
+    border-color: orange;
+    outline: none;
+}
+
+li:first-child {
+    font-weight: bold;
+}
+
+li:nth-child(odd) {
+    background-color: lightgray;
+}
+
+.note::before {
+    content: "Note: ";
+    font-weight: bold;
+    color: red;
+}
+
+.note::after {
+    content: " Please read carefully.";
+    font-style: italic;
+    color: gray;
+}
+
+.para::first-letter {
+    font-size: 200%;
+    color: green;
+    font-weight: bold;
+}
+
+::selection {
+    background-color: yellow;
+    color: black;
+}
+

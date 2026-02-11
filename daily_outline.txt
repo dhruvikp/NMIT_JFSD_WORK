@@ -27,6 +27,558 @@ This is not just a class - it is a transformation journey.
 
 
 =========================================================
+07/02/2026
+=========================================================
+Agenda:
+	- Fundamentals of JS, Variables, Constants, Primitive Types, Dynamic Types, Object, Arrays (methods of array), Function, Operators (with types)
+
+
+JavaScript - Programming language used to make webpages interactive
+
+
+HTML --> Structure
+CSS --> Design
+JavaScript --> Behavior
+
+Usernane: __________
+
+
+JS --> also used outside browser (nodeJs) for backend app
+
+Adv. JS
+	- Makes webpages interactive (form validation, animatin, live updates)
+	- Runs on browser
+	- Easy to learn
+	- Platform independent
+	- Used for both frontend and backend
+	- Large community support
+
+
+Variables -- 
+	Used to store data, so that they can be used and modified during program execution.
+
+	let a = "Dhruvik";
+
+	var
+		- funciton scoped, old method
+		- Not preferred now
+
+	let
+		- Modern method
+		- Can be updated, not redeclared
+		- Recommmended
+
+	const
+		- Can not reassigned
+
+	const a = 5;
+	a=6; // ERROR
+
+- JS is dynamically typed language
+- variable names are case-sensitive
+- Variable must start with letter, _, or $
+- Reserved keywords can not be used as variable names
+
+	const const = 5; // ERROR
+
+
+how to run js file?
+	1. Install nodejs
+
+	2. Install Plugin called Code runner
+
+JS Constant
+ Constant in JS are variables whose value can not change once assigned.
+
+
+JS Primitive Types:
+	String - Represents text written inside quotes
+
+	Boolean - Used to store true/false values
+
+	Number - Used for integers and decimal numbers
+
+	Undefined - Variable is declared but not assigned any value.
+	Null - Represents an intentional empty value.
+
+	BigInt - Used for very large integers.
+		- Always ends with n
+		- Used in finance, cryptography, large calculations
+
+
+	Symbol - Abosolute Uniquness
+
+		- Every time you call symbo(), it creates completely new, unique value. 
+		Even if two object have same description.
+
+
+Primitive types
+	- Immutable property (can not be changed)
+	a =5;
+	a-6
+	- Stored by value
+
+
+Dynamic Typing
+	
+	Dynamic typing means JS variables are not bound to a fixed data type.
+	Type of the varialble determined at runtime, based on assigned value to it.
+
+	you do not declare variable types explicitly.
+	let a = 10;
+
+	Faster development
+	flexible clode
+	cleaner
+
+JS Objects
+	Object is non-primitive (reference) data type used to store multiple related values in the form of key-value pairs.
+
+	It represents real-world entities like user, car, product, account.
+
+	Why Objects?
+		- Store grouped data.
+		- represent real-world data
+		- Enable structured and readable code
+		- Foundations of array, functions, and classes
+
+
+	Objects are reference types;
+		Objects are stored and copied by reference, not by value.
+
+		let a =5;
+		let b = a;
+
+		a=6;
+		console.log(b);
+
+	Object with Methods:
+
+		- Function declared inside objects are called methods
+		- this refers to the current object.
+
+
+	JS Array?
+		A JS Array is non-premitive (reference) data type used to store multiple values in a single variable.
+
+		values are stored in ordered list and accessed using index numbers.
+
+	Push - Add element at the end
+
+	pop - Remove element from the end
+
+	shift() - Remove element from the start
+
+	unshift() - Add element at the start.
+
+
+Function:
+	Function is JS block of reusable code designed to perform specific task.
+
+	WHy?
+		- Avoid coe repetation.
+		- breaking large programs into smaller parts.
+		- Improves maintainability
+		- code easier to understand test.
+
+
+
+
+
+
+
+Operators:
+1. Arithmatic Operators:
+	+ , -, *, /, % , ** (power)
+
+
+2. Assignment operators:
+	=, +=, -=, *=, /=
+
+	x+=2; // x = x+2;
+
+3. Comparision Operators:
+	
+	>, <, >=, <=
+
+	5>3 ==> true
+
+4. Equality operators:
+	==, ===, !=, !==
+
+	== -- value only      5 == "5" --> true
+	=== -- value + type   5 === "5" --> false
+	!= 	Values				
+	!==	value + type
+
+	Best practice: Always use === and !==
+
+5. Logical Operators
+	&& - AND
+	!  - NOT
+	|| - OR
+
+	true && false --> false
+	true || false --> true
+	!true --> false
+
+
+
+
+homefun:
+	create JS Calculator
+
+=========================================================
+06/02/2026
+=========================================================
+
+	Inheritance in CSS
+
+	Some CSS properties applied to a parent element are automatically passed to its child elements.
+
+	Why?
+		- Avoid repetition
+		- Keep CSS clean
+		- Apply common styles easily
+
+	body {
+		fornt-family : Arial;
+	}
+What properties are inherited?
+	- Common inherited properties:
+		-Color
+		- font-family
+		- font-size
+		- font-weight
+		- text-align
+		- visibility
+	- Properties that do not inherit
+		- margin
+		- padding
+		- border
+		- width
+		- height
+		- background
+
+Overriding Inheritance
+	- CHild overrides parent
+
+
+inherit keyword (Forcing inheritance)	
+	Forces a property to inherit from parent, even if it normally doesn't.	
+
+
+CSS specificity
+
+Specificity is the rule the browser uses to decide which CSS rule wins when multiple rules target the same element.
+
+CSS priority order
+	- Inline CSS
+	- ID Selector
+	- Class/Attribute/Pseudo-class selector
+	- Element/Pseudo-element selector
+
+Inline --> ID --> Class --> Element
+
+
+Bootstrap:
+Bootstrap is one CSS Framework that provides pre-written CSS classes to build responsive, consistent, and professional looking UI.
+
+What Bootstrap includes?
+ - CSS styles
+ - Responsive grid system
+ - pre-built UI components
+ - Utility classes
+ - JavaScript components (optional)
+
+ Bootstrap built on top of CSS, not replacement of CSS.
+
+ Why Bootstrap?
+ 	-Without Bootstrap
+ 		- write CSS for every button
+ 		- Handle responsiveness manually
+ 		- Browser inconsistencies
+ 		- Slower development
+
+
+ 	- WIth bootstrap
+ 		- Ready buttons, forms, cards
+ 		- Built in responsiveness
+ 		- Consistent UI
+ 		- Faster development
+
+ 	ex.
+ 	<button class="btn btn-primary"> Save </button>
+
+
+ 	<link 
+ 		href="bootstrap.min.css"
+ 		rel="stylessheet"
+ 	>
+
+
+Exercise
+---------
+	Online Course Landing page
+
+	This page will have:
+		- Header + navigation
+		- Hero section
+		- Course cards
+		- Contact form
+		- Footer
+
+Yashwanth N - Not
+Likhitha - Not available
+BHunesh Singh -  Not done
+Ankit  - Not available
+
+No one
+
+
+
+
+
+
+
+
+=========================================================
+05/02/2026
+=========================================================
+	Yashwanth N - 
+	Likhitha - 
+	Bhunesh pratap singh
+	ankit
+	aditya - Done job
+	ASIF - Not responding
+
+
+ID attribute
+
+id=<value>
+
+<p id="par1"> </p>
+
+The id attribute is used to uniquely identify a single HTML element on a webpage
+Why?
+	- Apply specific CSS style to one element
+	- Javascript - manipulate elements
+	- To naviate within a page (anchor links)
+
+Class attribute
+
+The class attribute is used to group multiple elements under common name, so they can share
+	- same styling
+	- same behavior
+	- same layout
+
+Why?
+	- Reusability
+	- Cleaner HTML
+	- Easier maintainance
+
+	<style>	
+		.info {
+			color:green;
+			front-size: 16px;
+		}
+
+	</style>
+
+Block Elements
+
+Block element
+	- start on a new line
+	- Occupy full width of parent
+	- stack vertically
+
+Common block elements:
+	<p>
+	<div> -- generic container
+	<h1>...<h6> -- headers
+	<section>, <article>
+
+
+
+Grouping text and elements:
+--------------------
+Why Grouping is required?
+	Grouping helps to
+		- organize HTML logically
+		- Apply styles collectively
+		- It improves readability
+
+
+<div> - Block level container
+<span> - is inline, used inside text (text styling)
+
+Webpage information
+-----------
+Meta tags provide information about the webpage, not visible to users.
+<head>
+
+Meta --> used by search engines in search results.
+Good descriptions == Better click-through rate.
+
+
+Escape characters 
+
+HTML uses certain symbols as syntax, so we need alternavites
+	<	&lt;
+	>  	&gt;
+	& 	$amp;
+	"	&quot;
+	'	&apos;
+
+==========================
+CSS (Cascading Style Sheets)
+used to style and layout HTML elements
+
+HTML --> Structure
+CSS --> Appearance
+
+What CSS can control?
+	- Colors & fonts
+	- Spacing (margin, padding)
+	- Layout (positioning, grid)
+	- Visibility & alignment
+
+Benefits:
+	- CSS allows separate content from the design
+	- Apply conistent styling
+	- Reuse styles
+
+
+CSS Selectors
+	What is CSS selector?
+
+	A selector is used to select HTML elements so we can apply styles to them.
+
+	selector {
+		property: value
+	}
+
+	1. Basic Selector
+
+		a. Universal Selector 		* -- Selects all elements on the page.
+			why?
+				- Reset default browsing styles
+				- Apply common base styling.
+
+		b. Type/Element Selector 	
+				selects all elements of specific html tag
+		c. Class selector
+			selects multiple elements with the same class.
+			.classname {
+				property:value
+			}
+
+		d. ID selector
+			Selects one unique element
+
+			#idName {
+				property: value
+			}
+
+
+		e. Attribute selector
+
+			selects elements based on presence or value of attributes
+
+			[attribute] {}
+
+			[attribute="value"]
+
+			Used in
+				- form styling
+				- targetting links
+
+Grouping selector
+	a. Descendant selector
+
+	Selects all matching elements inside another element, any depth level
+
+	ancestor descendant {
+		property: value;
+	}
+
+	b. child selector
+		Selects only direct children, not deeper levels.
+
+		parent > child {
+		 	property: value;
+		}
+
+
+Pseudo - class
+	A pseudo class is used to style an element based on its state.
+	not just tag, class id, id 
+
+	pseudo class answers: when should this style applied?
+
+	selector:pseudo-class {
+		property: value;
+	}
+
+	a:hover {
+		color:red;
+	}
+
+	:hover	  - Mouse over
+	:active	  - Mouse click
+	:focus    - Input focused
+	:visited  - Visited links
+	:link 	  - Unvisited links
+	:first-child - first child element
+	:last-child  - last child element
+	:nth-child() - specific child
+
+Pseudo-Element
+	A pseudo-element is used to style specific part of an element or to insert virtual content without modifying HTML.
+
+	pseudo-class --> style an element's state
+	Pseudo-element --> style of a part of an element
+
+	selector :: pseudo-element {
+		property: value;
+	}
+
+
+	::before 			Insert content before element
+	::after 			Insert content after element
+	::first-letter		Style first letter
+	::first-line		Style first line
+	::selection			Style selected text
+
+-- 30 min exercise time
+-------------------------
+Exercise:
+Build product listing page for small e-commerce website.
+
+	- Display page title at the top
+	- Show multiple product cards
+	- Each product card must include
+		- product name
+		- short description
+		- price
+		- availability status
+
+Technical constraints:
+	- Use div to group each product card
+	- Use pan to highlight price and availability
+	- Use external css only
+	- :hover -- on product card
+
+
+
+
+
+
+
+
+
+
+=========================================================
 04/02/2026
 =========================================================
 
