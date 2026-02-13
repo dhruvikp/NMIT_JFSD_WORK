@@ -27,7 +27,441 @@ This is not just a class - it is a transformation journey.
 
 
 =========================================================
-07/02/2026
+13/02/2026
+=========================================================
+Question: How to clone JS object?
+		: What is diff between Shallow clonging and Deep cloning?
+
+
+Arrow Function:
+	An arrow function is a shorter and modern way to write functions in JavaScript.
+
+
+function add(a,b) {
+	return a+b;
+}
+
+const add = (a,b) => {return a+b}
+const add = (a,b) => a+b;
+
+
+Note: Arrow Functions are not suitable as object methods.
+this keyword.
+
+------------------------
+
+JavaScript: splice() method
+
+splice() is an array method used to:
+	- Add elements
+	- Remove elements
+	- Replace elements
+
+It modifies the original array.
+
+Basic Syntax: array.splice(startIndex, deleteCount, item1, item2,...)
+
+	startIndex - position to start
+	deleteCount - number of elements to remove
+	item1, item2 - elements to add (optional)
+
+Notes:
+	- Original array changes
+
+
+slice() --> Extract a portion of an array
+
+
+JavaScript - map()
+
+	- Creates new array
+	- Transform each element
+	- Array length remains the same.
+
+array.map(callback(element, index, array))
+
+
+	Used for transformation.
+
+
+array - filter()
+	- creates new array
+	- keeps elements that return true
+	- length may be smaller.
+
+	array.filter(callback(element, index, array))
+
+
+reduce() - combine to single value.
+
+	- Reduces array to one value.
+	- Can return nubmer, object, array etc.
+
+
+	array.reduce( (accumulator, current) => {}, initialValue )	
+
+	- Used for totals, counts, grouping.
+
+findIndex() 
+	- when you need position of an element
+
+
+--------------------------------------
+JS - Hoisting
+Hoisting is JS behavior of moving declarations to the top of their scope before code execution.
+
+Only declarations are hoisted, not initializations.
+
+
+How JS executes code? (important concept)
+	1. Creation Phase - Memory is allocated
+	2. Execution Phase - Code is executed line by line
+
+Hoising happes at creation phase.
+
+Temporal Dead Zone (TDZ) in JavaScript?
+
+	The TDZ is a time period between:
+		- When variable is hoisted
+		- And when it is initialized
+
+	During this time, the variable can not be accessed.
+	TDZ applies to let, const (NOT var)
+
+------------------------------------
+
+What is Promise?
+
+	A Promise is a JavaScript object that represents the result of an asynchronous operation that will be available now, later or never.
+
+	It helps handle asyncrhonous code in a cleaner way than callbacks.
+
+
+Why Promises are needed?
+	- Javascript is single-threaded
+	- Long operations (API calls, timers) takes time
+	- Promise helps manage future values easily
+
+
+Promise States:
+	A Promise can be one of three states:
+
+	1. Pending - Initial value
+
+	2. Fulfilled - Operation completed successfully
+
+	3. Rejected - Operation failed.
+
+
+	Once promise settled(fulfilled/ rejected) state can not be changed.
+
+Creating a Promise
+-------------
+
+const myPromise = new Promise( (resolve, reject) => {
+	
+	// body
+}   ) 
+
+
+Promise Chaining
+---------
+
+// async/ await (ES8)
+
+
+asyc/await is a modern syntax built on top of Promises that makes asynchronous code look and behave like synchronous code.
+
+
+Why async/await:
+	- Easier to read than .then()
+	- Avoids callback hell
+	- Better error handling
+	- cleaner logic flow.
+
+
+async keyword:
+	- Used before a function
+	- Makes a function always return a Promise
+
+await keyword:
+	- Used inside async functions only
+	- Pauses execution until promise resolves
+	- Returns resolved value.
+
+	await myPromise.
+
+
+------------------------------------------------------------
+
+Exercise detail:
+
+Create a web page where users can enter expense details such as title, amount, and category.
+When the user submit the form, the page may reload normally.
+The entered expense detais shold be processed using JavaScript logic, 
+
+Use HTML for structure, CSS for styling and JavaScript for handling form data.
+
+-------------------------------------------------------------
+
+=========================================================
+12/02/2026
+=========================================================
+
+
+Logical Operators with Non-Boolean Values
+-------------------------------------
+
+	AND && 
+
+	OR ||
+
+	Javascript doesn't return true/false always.
+
+	AND 	Return first falsey value or last truthy value.
+
+	Falsy values in JS
+		- false, 0, "", null, undefined, NaN
+
+	OR -- Returns first truthy value.
+
+Not !
+	Converts value to boolean and reverses it.
+
+Ternary Operator:
+------------------
+	let result = age > 18 ? "Adult" : "Minor";
+
+Bitwise operators:
+------------------
+	 & AND
+	 ^ XOR
+	 ~ NOT
+	 << Left shift
+	 >> right shift
+
+
+Operator Precedence
+--------------------
+Operator Precedence decides which operator is evaluated first.
+
+Common precedence Order (High -> Low)
+	1. ()
+	2. **
+	3. * / %
+	4. + -
+	5. < > <= >=
+	6. == ===
+	7. &&
+	8. ||
+	9. =
+Note: Always use Parentheses to avoid confusion.
+
+Control flow statements in JS
+-----------------------------
+
+Control flow statement determines in which order in which statements are executed in a program.
+
+	1. Conditional statements: If, else, else if, switch
+	2.  Looping statement: for, while, do..while
+	3. Jump Statements  : break, continue, return
+
+
+if-else statement in JS
+	if(cond) {
+		// code gets executed if condition is true.
+	}
+
+WHen to use?
+	- Decision Making
+	- Validations
+	- Access control
+	- Conditional Logic
+
+
+Switch statements:
+	different block of code based on value of an expression.
+
+	switch(expression) {
+		case value1:
+			// code
+			break;
+
+		case value2:
+			break;
+
+		default:
+			//code
+	}
+
+Importance of break: (VERY IMPORTANT)
+	- Stops execution after a matched case
+	- without break, execution falls through next cases.
+
+Loops in JavaScript
+	execute block of code repeatedly as long as a given conditon is true.
+
+	Loops help avoid code repetition and are used for iterating over data like arrays, string numbers.
+
+
+	1. for loop
+	2. while loop
+	3. do..while loop
+	4. for..of loop
+	5. for..in loop 
+
+
+
+Object Cloning:
+	Object cloning means creating new object with the same properties and values as an existing object.
+
+	let obj1 = {a: 10};
+	let obj2 = obj1;
+
+	obj2.a = 20;
+	console.log(obj1.a); // 20
+
+Types of Object cloning:
+
+1. Shallow Cloning
+	- Copies only top-level properties
+	- Nested objects are still shared by reference.	
+
+	Two ways to achive it:
+	1. Using spread operator (...)
+
+	2. Object.assign()
+
+Problem of shallow cloning:
+	- Nested objects are not cloned properly
+
+
+2. Deep Cloning
+
+	- Copies all levels of the object
+	- No shared referenes.
+
+	let clone = JSON.parse(JSON.stringify(user));
+
+Limitations:
+	- Loses functions
+	- undefined ignored
+	- Dates becomes string.
+
+
+	Method 2: using structuredClone(Modern & best)
+
+		let clone = structuredClone(user);
+
+		- hanles nested objects
+		- supports dates, maps, sets
+		- Not supported in very older browser.
+
+
+	Method 3: Manual Recusive clone
+
+
+Object creation:
+
+Factory function:
+	A factory function is a normal function that returns a new object.
+
+	It is called factory because it produces objects.
+
+	Basic way of creating object has lot of problems
+		- Duplicate Code
+		- Hard to maintain
+		- Not scalable.
+
+
+	Factory function:
+		function createPerson(firstName, lastName) {
+    return {
+        firstName: firstName,
+        lastName: lastName,
+        fullName: function() {
+            return `${this.firstName} ${this.lastName}`;
+        }
+    	};
+	}
+
+	- Code reused
+	- cleaner
+	- scalable.
+
+	Hidden Problem: Memory Inefficiency:
+
+	Every time you call createPerson() function:
+		- A new object is created
+		- A new copy of getFullName() is created.
+
+	Waste of memory when many objects are created.
+
+
+	In order to optimize it, 
+
+	Step 1: Remove method from object and have separate object for all methods assignments.
+
+	- Manual assigment
+	- Bad for many methods.
+
+
+	Solution: Using Object.create() (Prototype based factory)
+		Object.create(proto)
+
+
+Another standard pattern (constructor function) to create object.
+	
+	A constructor function is a special function used with new keyword to create objects.
+		- Uses prototype automatically
+		- Industry standared
+
+	When you create object using new keyword:
+		- Creates new empty object
+		- sets prototype to Person.prototype
+		- Binds this to the new object
+		- Returns the object automatically
+
+	Adding methods (memory efficient way)
+
+		Person.prototype.getFullName = function() {
+			return this.firstName + ' '+ this.lastName;
+		}
+
+		- One shared method
+		- Prototype based
+		- Scalable.
+
+	Note: Constructor functions should start with Capital letter only.
+			it differentiate from normal functions.
+
+
+
+Exercise:
+	Create Student management system
+		Each student should have:
+			- name
+			- rollNo
+			- getDetails() --> returns "Name: <>, Roll No: <>""
+
+JavaScript Math Object:
+----------------------
+	Math object is a built-in JavaScript object that provides mathematical constants and functions for performing mathematical operations.
+
+
+Template Literals:
+------------------
+	Template Literals are modern way to create strings in JS using backticks.
+
+	They allow:
+		- Variable interpolation
+		- Multi-line strings
+		- Expression evaluation
+
+	₹string text₹
+
+=========================================================
+11/02/2026
 =========================================================
 Agenda:
 	- Fundamentals of JS, Variables, Constants, Primitive Types, Dynamic Types, Object, Arrays (methods of array), Function, Operators (with types)
@@ -223,10 +657,15 @@ Operators:
 	!true --> false
 
 
-
+	
 
 homefun:
 	create JS Calculator
+
+
+
+
+
 
 =========================================================
 06/02/2026
