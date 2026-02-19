@@ -25,6 +25,257 @@ Instructions:
 This is not just a class - it is a transformation journey.
 
 
+=========================================================
+18/02/2026
+=========================================================
+
+Angular JS - Angular 1
+
+		- Open source JS front end framework
+
+SPA
+	Loads only one HTML page and
+	- UI changes happens dynamically
+	- Faster user experiene
+	- No page refresh
+	- App like feel in browser
+
+Angular 2+ --> completely different framework
+
+Why Angular popular?
+
+	1. DI
+		Instead of component creating its own dependencies, Angular Provides them
+
+
+	Loose coupling - 
+	Easier testing
+	Better for maintainability
+
+ 2. Two way binding
+ 	Typescript ()
+ 		 Model 
+
+ 	View --> UI
+
+ 	Data flows two ways:
+ 		- Model --> View
+ 		- View --> Model
+ 	- No manual DOM manipulation
+ 	- UI stays automatically in sync
+
+ 3. Testing support
+
+ 4. MVC Architecture
+
+ 	Seperation of concerns
+
+ 	Controlller ---> Model --> VIEW
+
+
+Typescript
+
+TypeScript - Superset of JavaScript developed by Microsoft
+
+It adds extra features on top of javaScript:
+	- Types
+	- Classes
+	- Interfaces
+	- Generics
+	- Modern ES features
+
+- Browsers do not run Typescript
+- Typescript is compiled into JavaScript.
+
+Why TypeScript:
+Java Script is:
+	- Dynamically typed
+	- Errors appar at runtime
+	- Hard to maintain in large applications
+
+TypeSript:
+	- Adds Static typing
+	- Catch errors at compile time
+	- Makes large apps predictable and maintainable.
+
+
+.ts -- tsc compiler --> .js --> execute NodeJs or browser
+
+nodejs	
+	npm install -g typescript
+	tsc --version
+
+
+tsc test.ts -->
+node test.js --> run it locally
+
+Type Inference:
+	
+	Type automatically detects based on assigned value.
+
+Interface
+- Enforce structure
+
+
+
+Angular:
+------------
+	
+	npm install -g @angular/cli
+
+	ng new my-first-app
+
+package.json -- identity card of your project
+It tells:
+	- what the project is
+	- which libraries it depends on
+	- which scripts can be run
+
+tsconfig.json -- Configuration file for Typescript compiler (tsc)
+
+angular.json - Angular workspace configuration file
+
+	Angular CLI reads this file, not the browser.
+
+	ng serve --> start application
+	ng build --> build application
+	ng test --> test applicaiton
+
+	without angular.json --> CLI is blind.
+
+
+src/main.ts 
+	- Entry point of Angular application.
+
+	This is the first file executed.
+
+	It tells angular
+		- which component is root
+		- where the application starts
+
+
+Dependency Injection:
+	A class doesn't create the objects it depens on.
+	instead objects are provided (injected) from outside
+
+
+Angular component:
+	
+	- Component is building block of the UI that controls portion of the screen using HTML, CSS.
+
+	Component = UI + Logic
+
+	Angular App - collection of components
+
+
+
+	Real world analogy:
+		- Header --> 
+		- Sidebar --
+		- ProductList --
+		- Footer -
+
+	Problems without components:
+		- Huge HTML files
+		- Mixed logic + UI
+		- Hard to reuse
+		- Impossible to maintain large apps
+
+
+	Benefits:
+		- Reusable
+		- Maintainable
+		- Testable
+		- Scalable
+		- Team- friendly
+
+
+
+Selectors:
+
+	1. Element Selector (Most common)
+
+		selector: 'app-server'
+
+		<app-server> </app-server>
+
+
+	2. Attribute Selector
+
+		Attach component behavior to exising HTML element
+
+		selector: '[app-server]'
+
+		<p app-server> </p> 
+
+	3. Class Selector
+
+		Apply component using css class name
+
+		selector: '.app-server'
+		<div class="app-server">
+
+
+-------------------
+
+Data Binding
+
+	Mechanism by which Data flows between component (TypeScript) and the Template (HTML)
+
+	Angular automatically keeps UI and data in sync
+
+	1. Interpolation
+
+		one way binding from component -> template
+
+	2. Property Binding
+		Binds a DOM property to a component value.
+
+		Controls element properties dynamically.
+
+	Common Properties:
+		- disabled
+		- value
+		- src
+		- href
+		- class
+		- style
+
+
+	3. Event Binding
+
+		Listen to DOM events and execute component logic.
+
+	Common events:
+		- click
+		- input
+		- change
+		- submit
+
+
+
+	4. Two-way binding
+
+
+
+
+
+
+
+
+
+
+
+
+
+15 mins exercise:
+-----------------
+	Rishabh - 
+	Bhunesh - 
+	ASIF - 
+	Chiraag Pujar 
+	Balaji Singh - 
+
 
 =========================================================
 13/02/2026
@@ -201,6 +452,20 @@ When the user submit the form, the page may reload normally.
 The entered expense detais shold be processed using JavaScript logic, 
 
 Use HTML for structure, CSS for styling and JavaScript for handling form data.
+
+
+NAYANA G J -->  NOT
+Kaushik Naik --> Done
+Lohith N H. --> Absent ()
+Darshan A M.->NOT
+
+Ankit Jogur. - Done
+Deepunishani - Done
+Agastya -- NOT
+Yashwanth - DONE - Not shared
+Tejaswini C L - DONE
+Tanish Dogra - DONE
+Aman Sah- DONE
 
 -------------------------------------------------------------
 
