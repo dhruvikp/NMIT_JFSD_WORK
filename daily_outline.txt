@@ -26,6 +26,491 @@ This is not just a class - it is a transformation journey.
 
 
 =========================================================
+20/02/2026
+=========================================================
+
+Agenda:
+	- Angular service
+	- Observable
+	- HttpClient (using observable)
+
+
+
+
+
+
+
+
+
+Angular Service:
+
+	Service class is used to:
+		- Store business logic
+		- Share data or functionality between components
+		- Keep components clean and focused on UI
+
+	Component = UI Logic
+	Service = Business/ reusable logic
+
+Angular Observable:
+
+	An Observable is:
+		- Stream of data that arrives over time.
+
+	It can emit:
+		- 1 value
+		- Many values
+		or even infinite values
+
+
+Real-life analogy:
+	- Youtube channel --> Observable
+	- Subscriber --> 
+	- New video () --> next()
+	- Error 		--> error()
+	- Channel closed --> Complete()
+
+Why Angular uses observable?
+	- Event based
+	- Async heavy
+	- REal-time
+
+	Ex: 
+		- HTTP Calls --> 
+		Form value changes -->
+
+Promise --> one-time
+Observables --> continious
+
+Syntax:
+	
+	Observable  --> subscribe({
+		next: value => {},
+		error: err => {},
+		complete: () => {}
+	});
+
+	rxjs --> Observable
+
+
+HttpClient API
+	- buit in uservice that allows your app. to communicate with backend server over http.
+
+
+GET
+POST
+PUT
+DELETE
+
+	REST application
+
+	GET: 	/users/ -- return list of users {json format}
+	POST:   /users/ --> data body --> save
+	PUT: 	/users/1 --> data body --> update
+	DELETE: /users/1 --> delete
+
+
+	Key features:
+		Observable-based - 
+			fetch --> which uses promises
+
+			HttpClient --> new --> RxJS observables
+			Automatic JSON parsing -
+			Type Safety: 
+			Interceptors -Passing some headers (authormization headers)
+
+
+	app.config.ts
+		
+
+
+
+Manasa - not attended due to emergency
+
+Not responding:
+	- Abhinav
+	- Akhilesh N R
+	- Pratiksha Kore.
+	- Roma Narayan
+	- Syed Umair
+	- Mohammed Owais Ahmed
+	- Harshini K C.
+
+
+Correct:
+Pratiksha, Karthik Rao
+Swathi, Harsh, Golla Raviteja, Syed
+
+
+Questions:
+------------
+1. What is the pipe in angular? 
+2. what is router-outlet directive?
+3. what is the purpose of ngModel?
+4. what are two types of forms in angular?	
+
+
+
+
+
+
+
+
+=========================================================
+20/02/2026
+=========================================================
+
+	Agenda:
+		- Angular Forms
+		- Angular Pipes
+		- Angular Routing
+
+
+Angular Forms:
+
+	Provides a way to :
+		- Capture user input
+		- Prevent page refresh (SPA behavior)
+		- Validates user data
+		- Track form state (valid, touch, dirty etc)
+		- Submit data in a controlled way
+
+	Angular converts from into JavaScript Object that contains:
+		- values
+		- Metadata (state + Validation)
+
+	Two ways to Build forms in angular
+
+		Angular supports two approaches:
+			1. Template Driven Forms
+			2. Reactive Forms
+
+		Both solve the same problem, but in a very different ways
+
+
+	Template Driven Forms
+		- Form logic lives mainly in HTML
+		
+
+		Easy to learn
+		Less code
+		Automatic form creation by Angular
+		Validations defined in HTML
+
+	Reactive Forms
+
+		- Form logic lives in TypeScript (Component)
+		- You explicitely create the form structure
+
+		- More control
+		- Better for validation handling
+
+Angular Pipes:
+
+	A way to transform data in the template before displaying it.
+
+	Pipes do not change actual data, only how it is shown in the UI.
+
+Without pipes:
+	- Formatting logic goes into your component
+	- Messy templates or TS files
+	- Repeated code
+
+	{{ value | pipeName }}
+
+1. uppercase/lowercase 
+2. date 
+
+		{{ today | date:'dd/MM/yyyy' }}
+
+3. currency
+	{{price | currency: 'INR'}}
+
+4. number
+5. percent
+6. json 
+	{{user | json}}
+
+7. slice
+	
+custom pipe
+	ng generate pipe shorten
+
+
+	@Pipe({
+		name:'shorten'
+	})
+	export class ShortenPipe implements PipeTransform {
+
+		transform(value:string, limit: number) {
+			// business logic for transformation
+		}
+	}			
+
+{{user| shorten}}
+
+
+Angular Router
+
+	Routing is:
+		A mechanism to navigate between different views (components) without reloading page.
+
+		<a href="https://www.google.com">Click Me</a>
+
+		Angular routing enables SPA navigation
+
+	Why need?
+
+	 In traditional websites:
+	 	- Each URL --> Separate HTML page
+	 	- Browser reloads page
+
+
+	 In angular
+	 - only one html file (index.html)
+
+	 - Different URLs should show different components
+	 - page should not reload
+
+
+	How angular router works internally
+		- Listen to browser URL changes
+		- Matches URL with route configration (/home --> HomeComponent)
+		- Loads the mapped component
+		- Displays it inside <router-outlet>
+
+	Core building blocks of Angular Router
+	
+	1. Routes - URL-> Component mapping
+	2. RouterModule - Enables routing
+
+	3. <router-outlet> --> where component loads
+	4. RouterLink --> Navigation without reload
+
+
+Employee Registration form:
+	--
+	--
+	--
+	--
+	--
+	--
+	--
+
+	Submit
+
+	show data down here.
+
+
+
+=========================================================
+19/02/2026
+=========================================================
+Agenda:
+	- Two Way Binding
+	- Directive
+		1. Component Directive
+		2. Structural Directive (*ngIf, *ngFor, *ngSwitch, *ngIf Else, *ngTemplateOutlet )
+		3. Attribute Directive (ngStyle, ngClass, )
+		
+	- Component communication
+		- @Input - Parent to child component communication
+		- @Output - Child to parent Using Event emitter
+
+	- Angular Component Lifecycle
+		constructor
+		ngOnChanges
+		ngOnInit
+		ngDoCheck
+		ngAfterContentInit
+		ngAfterContentChecked
+		ngAfterViewInit
+		ngAfterViewChecked
+		ngOnDestroy
+
+
+Two Way Binding:
+	- data flows from Component - View and 
+				 from View -> Component automatically.
+
+	Both stay in sync
+	Example:
+		user types --> input type = text -->
+						component value changes 
+
+
+	[(ngModel)] = "propertyName"
+
+
+Directives in Angular
+	A Directive is : an angular instruction that tells the DOM how to behave or look.
+
+	Directive extends HTML with new behavior.
+
+	1. Component Directive
+
+	2. Structural Directives
+
+		Change structure of the DOM
+		(add/remove elements)
+
+
+		How to identify: use * prefix
+
+		*ngIf, *ngFor, *ngSwitch, *ngIf Else, *ngTemplateOutlet
+
+		*ngIf - Adds or remove an element from DOM based on a condition
+
+
+			<p *ngIf = "isLoggedIn"> Welcome User </p>
+
+		*ngFor - Repeats an element each time in a collection (array, iterable)
+
+		*ngSwitch 
+			Displays one view from multiple possible views based on expression value
+
+			<div [ngSwitch="value"]>
+				<p *ngSwitchCase="'A'"></p>
+			</div>
+
+		*ngIf else - allows you to 
+					show one tempalte when condition is true
+					and another template when condition is false
+
+			Instead of just hiding content --, you switch between two views.
+
+
+
+
+
+	3. Attribute Directives
+
+		A directive that changes appearances or behavior of existing DOM element.
+
+		Note: It doesn't add or remove elements, it works on already existing elements
+
+
+	Built-in Attribute directives:
+		ngStyle - Dynamically apply styles
+		ngClass - Dynamically add or remove CSS Classes from an element based on condition
+
+
+Component Communication
+
+	Sharing data or events between angular components.
+
+Angular apps are component baed, so components must talk each other.
+
+Why?
+	- Angular components are isolated
+	- One component should not directly modify another.
+	- Data flows between components should be controlled and predictable.
+
+Parent - Child --> pass data from parent to child component (@Input())
+
+Child -> parent --> Sends an event (@Outpout())
+
+What is @Input()
+	- Used to parent component to pass data to child component
+		Child receives data but doesn't own it.
+
+Parent -> child
+
+Syntax:
+	Child component:
+
+		@Input('name') drk! : type;
+
+
+	Parent component:
+		<app-child [name]="parentValue"> </app-child>
+
+
+Child -> Parent Communication
+===========================
+
+	@Output() -- angular decorator
+		A child component to send events or data to its parent component.
+
+	It is used when something happens in the child and parent must react.
+
+	Child component should not directly modifying parent data
+	child to parent communication must be event-based only
+
+
+Child --> Parent (through event)
+	- child emits an event
+	- Parent listen and decides what to do.
+
+Synatx:
+	
+	Child component:
+		@Output() eventName = new EventEmitter<Type>();
+
+	Parent Component:
+		<app-child (eventName)="parentMethod($event)"> </app-child>		
+
+	What is $event?
+	 The data emitted by the child component
+
+
+Exercise:
+	- Create App (where you have app component)
+    - create EmployeeRegistrationComponent (Take employee information , fname, lasane, emailid --> submit button)
+    		 Below section
+    		 	List all data.
+
+
+
+   Compoent Lifecycle order:
+
+   The sequence of stages a component goes through from
+   	creation --> update --> destruction
+
+   	Angular doesn't
+   		- create component, render template, bind data, destroy templetes... all at once
+
+
+   	this hppens in phases
+   		Lifecycle allows you to 	
+   			- initialize data
+   			- React to input changes
+   			- Access DOM stafely
+   			- Clean up memory
+
+
+
+   	Creation --> Change detection --> Destruction phase
+
+
+   	1. constructor
+   	2. ngOnChanges (@Input value changes)
+   	3. ngOnInit. -- called once after render
+   					initialization logic, 
+   	4. ngDoCheck	- Runs during every change detection cycle
+
+   	5. ngAfterContentInit	- Runs after content projection (ng-content)
+   	6. ngAfterContentChecked - Runs after projected content is checked
+   	
+   	7. ngAfterViewInit. -- Runs after component view and child views are initialized
+   							@ViewChild
+   	8. ngAfterViewChecked - Runs after every view check (Avoid heavy logic here)
+   	9. ngOnDestroy		  - Called just before component is destroyed (cleanup, prevents memory leaks)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========================================================
 18/02/2026
 =========================================================
 
@@ -226,7 +711,7 @@ Data Binding
 
 	1. Interpolation
 
-		one way binding from component -> template
+		one way binding from component -> template {{ }}
 
 	2. Property Binding
 		Binds a DOM property to a component value.

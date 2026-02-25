@@ -1,0 +1,52 @@
+<p>home works!</p>
+
+<!-- Hey angular, give me access to this form object that you have created-->
+<form id="user-data" (ngSubmit)="onSubmit()" #userData="ngForm">
+
+
+    <div id="userdata" ngModelGroup="userData">
+
+        <label for="username">Username:</label>
+    <input type="text" id="username" ngModel name="username" required>
+    
+    <button type="submit" (click)="suggestUsername()">Suggest a username</button>
+
+    <div>
+        <label for="email">Mail</label>
+        <input type="email" id="email" ngModel name="email" required email  #email="ngModel">
+        <span *ngIf="email.invalid && email.touched">Please enter a valid email.</span>
+    </div>
+
+    <div>
+        <label for="secret">Secret Question:</label>
+        <select id="secret" name="secret" ngModel>
+            <option value="pet">Your first pet?</option>
+            <option value="teacher">Your first teacher?</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" [disabled]="!userData.valid">Submit</button>
+    </div>
+
+
+    </div>
+
+    
+
+</form>
+
+
+<div *ngIf="submitted">
+    <h3>Form Submitted!</h3>
+    <p>Username: {{ user.username | uppercase}}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Secret Question: {{ user.secret }}</p>
+
+    <p> {{ 0.25 | percent}}</p>
+    <p> {{ user | json }}</p>
+
+   <!-- slice example-->
+    <p> {{ user.username | slice:0:3 | uppercase}}</p>
+
+</div>
