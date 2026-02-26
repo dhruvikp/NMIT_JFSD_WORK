@@ -25,13 +25,199 @@ Instructions:
 This is not just a class - it is a transformation journey.
 
 
+
 =========================================================
-20/02/2026
+26/02/2026
+=========================================================
+
+Agenda:
+	- Async pipe
+	- CORS
+	- BDD/Cucumber (Gherkins)
+
+
+The async pipe is an angular built-in pipe that:
+	
+	Subscribes to an Observable or Promise, gets the latest value, updates the UI, and automatically unsubscribes.
+
+	- No subscribe()
+	- No unsubscribe()
+	- UI Updates automatically
+
+
+
+-----------------------------------
+Emits value-->  subscriber to get the value
+				updating that value to the angular component variable.
+				that variable was bined to the HTML (View)
+
+			Issue : Anguler zone aware
+					ngZone
+
+----------
+
+CORS - Cross Origin Resource Sharing
+
+	browser security mechanism that controls:
+		- Which frontend origins are allowed to access backend resource?
+
+	Important:
+		- CORS is enforced by browsers
+		- Not by servers
+		- Not by postman/url
+
+
+What is an Origin?
+	- Protocol + domain + port
+
+
+
+	requests
+
+	http://localhost:4200 --> http://localhost:4200/api 	-- YES
+	http://localhost:4200 --> http://localhost:8080/ap.     -- NO
+	http://example.com.   --> http://api.example.com. 		-- NO
+
+
+Without CORS:
+	
+	Any website could:
+		- Read your bank data
+		- Use your cookies
+		- Call private APIs
+
+	Ex. evil-site.com -> bank.com/api/balance
+
+With CORS:
+	Browser ask:
+		Hey backend, is this origin allowed access?
+
+		Yes/No
+
+	Browser decides whether JS code can access response or not
+
+Steps:
+	Frontend (localhost:4200)
+
+	Browser sends request (pre-flight request)
+
+
+	Browser response include:
+		Access-control-allow-origin: http://localhost:4200
+		Access-control-Allow-Methods: Allowed HTTP methods
+		Access-Control-Allow-Headers: Allowed custom headers
+		Access-Control-Allow-Credentials: Cookies allowed?
+
+
+	Browser allwos JS to read response
+
+
+----------------
+	Cucumber
+
+
+Cucumber is a BDD (Behavior Driven Development) testing tool that allows you to:
+	- Write test cases in plain english (Using Gherkins language) and execute them as automated tests.
+
+
+BDD - Behavioral Driven Development
+
+	BDD is a software development approach that focus on :
+		- How application should behave from the user's perspective
+
+	Not on the
+		- Code structure
+		- Implementation details
+	But on
+		- User actions
+		- Expected outcomes
+
+
+
+Development flow:
+	Business --> 	QA 	--> Developer
+
+
+Cucumber:
+	- Helps to bridge the gap between:
+		- business/product owners
+		- QA/Testers
+		- Developers
+
+
+Featuer:
+
+	Feature: Login Functionality
+
+	Scenario: Successful Login
+		Given user is on login page
+		When user enters valid username and password
+		Then user should see dashboard
+
+
+
+- Readable by non-technocal people
+- Executable by automation tools
+
+Core Components of Cucumber:
+	4 core components
+
+	Feature File (Gherkins language)
+		- Written in plain English
+		- Uses Gherkin Language
+		- Describes Application behavior
+		- File extensions : .feature
+
+
+	Step Definitions
+		- Map English steps to the code
+		- Written in Java / JS/ python
+		- Contains automation logic
+
+	 This is where real execution happens.
+
+
+
+
+	Test Runner
+
+		Connects Cucumber with JUnit/TestNG runner
+
+		Tells:
+			- Where feature files are
+			- Where step definitions are
+			- What reports to generate
+
+
+
+
+	Automation/Business logic
+
+	java/nodejs/python etc
+
+
+
+
+Expense management
+	Add expense details
+
+	Add
+
+	Show list
+
+
+
+
+
+
+ 
+=========================================================
+25/02/2026
 =========================================================
 
 Agenda:
 	- Angular service
-	- Observable
+	- Observable (RxJS)
 	- HttpClient (using observable)
 
 

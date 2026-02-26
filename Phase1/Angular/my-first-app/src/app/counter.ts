@@ -5,15 +5,18 @@ import { Observable , interval} from 'rxjs';
   providedIn: 'root',
 })
 export class Counter {
+  ngZone: any;
 
   getSeconds(): Observable<number> {
 
     return new Observable<number>(observer => {
       let count = 0;
       
-      const intervalId = setInterval(() => {
-        observer.next(count++);
-      }, 1000);
+        const intervalId = this.ngZone.run(() => {
+        return setInterval(() => {
+          observer.next(count++);
+        }, 1000);
+      });
 
 
       // clean up when unsubscribed
