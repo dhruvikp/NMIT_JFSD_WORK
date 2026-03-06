@@ -25,6 +25,823 @@ Instructions:
 This is not just a class - it is a transformation journey.
 
 
+=========================================================
+06/03/2026 
+=========================================================
+Agenda:
+	- Static
+	- Final,
+	- Arrays
+	- String
+	- Exception Handling
+
+
+Static:
+	Static keyword in java is used to indicate that member belongs to the class rather thn to individual objects
+
+	Static members are shared across all objects of a class.
+
+	Only one copy of static members exist in the memory
+
+Every student:
+	name
+	roll number
+
+Colledge name - same for all students
+
+utility methods
+value common to all objects
+shared counters
+memory optimization - avoid duplicate copies
+
+Where static can be used?
+	1. Variable
+	2. Methods
+	3. Blocks
+	4. Nested classes
+
+class area
+-----------------------
+Student.college = ABC College (1 copy)
+
+
+Heap
+--------------------
+Object s1 --> Student(1, Dhruvik)
+Object s2 --> Student(2, Rahul)
+
+
+Rules:
+	1. Static method cannot access non-static members directly
+	2. A static block executes when the class loads.
+
+Static inner class:
+	Java allows static inner class.
+
+
+Qstn: 
+	Can Static method be overridden?
+	Can constructor be static?
+	can Static method access static variable?
+	can static method access instance variable?
+
+
+final keyword:
+	used to restrict modification.
+
+	It means once something is declared as final, it cannot be changed further.
+Where final can be applied?
+	final variable  - Value cannot change
+	final method.   - Cannot be overriden
+	final class.    - Cannot be inherited
+
+
+Blank Final variable:
+ we declare final variable without initializing immedeately.
+ But it must be initialized before constructor finishes.
+
+final reference variable
+	when object reference is final, it means:
+		- reference cannot change
+		- object data can change itself.
+
+
+String
+----------
+	A String in java is a sequence of characters used to represent text.
+
+	String name = "Dhruvik";
+
+		 	"Dhruvik" --> is a String object
+
+		 java, String is not a primitive type. Class present in java.lang package.
+
+1. String is Immutable.
+
+	Meaning,
+	 ➡️ Once a String object is created, its value cannot be changed.
+
+	 String name = "java"
+	 name.concat(" Programming")
+
+	 new objects is created in the String cost pool, not changing existing object.
+
+Why String is immutable?
+	1. Security
+
+		File paths
+		network connections
+		class loading
+
+	if it is mutable --> hackers could change it.
+
+	2. ThreadSafety
+
+		Immutable objects are natuarry thread-safe.
+
+		Multiple threads can use same string safely.
+
+	3. String pool optimization.
+	Java Stores string in a special memory area called string pool, to reduce memory usage.
+
+	4. HashCode caching
+		String are used heavily in HashMap keys
+		Immutable objects guarantee hashcode consistency.
+
+String object creation:
+Two ways:
+
+1. Using String Literal
+	Stirng s = "Java";
+
+	Stored in String Cost Pool (SCP)
+
+	String s1 = "Java";
+	String s2 = "Java";
+
+	Both refer to same memory location.
+
+2. Using new keyword
+	Sting s = new String("Java");
+
+	This creats two objects
+	a. SCP
+	b. Heap Memory
+
+
+"  Java  ".trim() --> "Java"
+
+
+StringBuilder
+
+------
+
+Java Exception Handling
+	
+	An exception is unexpected event that occurs during program execution and disrupts the normal flow of the program.
+
+	Ex:
+		Dividing by Zero
+		File not found
+		Invalid user input
+		Network failure
+		database connection failure
+
+	Without handling exception, the program terminates abruptly.
+
+With exception handling:
+	- program continues execution
+	- Errors handled gracefully
+	- Logging possible
+	- System reliability improves
+
+
+	try {
+		//risky code
+	} catch(Exception e) {
+		// handle error
+	}
+
+
+Exception Hierarchy in Java
+
+Object
+	
+	Throwable
+
+		Error
+
+		Exception
+
+			- Checked Exception
+
+			- RuntimeException (Unchecked exception)
+
+				- 	
+
+CheckedException
+
+	- checked at compile time
+	Compiler foces developer to handle them
+
+	Ex:
+		- IOException
+		- SQLException
+		- FileNotFoundException
+		- ClassNotFoundException
+
+	Compiler forces:
+		- unhandled exception type. 
+
+Unchecked exception
+	Ex:
+		- ArithmaticException
+		- NullPointerException
+		- ArrayIndexOutOfBound
+		- NumberFormatException
+
+
+		int x = 10/0;
+
+		compiler allows it, but runtime fails.
+
+	multi catch block:
+		- Specific exception first
+		- General exception later.
+
+	finally block:
+		- finaly block always executes.s
+
+		Used for:
+			- closing files
+			- closing db connections
+			- release resources
+
+
+throw keyword:
+	throw is used to manually throw an exception.
+
+throws keyword:
+	used to declare exceptions
+
+Custom Exception
+	Developers can create their own exceptions
+
+
+Common Runtime Exceptions:
+	NullPointerException 	--> while accessing null object
+	ArithmaticException 	--> divide by zero
+	ArrayIndexOutOfBoundsException --> Invalid Index
+	NumberFormatException 		--> invalid number conversion
+
+
+String s = null;
+s.length();									
+
+
+Best practices:
+	1. Catch Specific exceptions
+
+	2. Never keep empty catch block
+		always log or handle it.
+
+	3. Use finally for cleanup
+		- close files
+		- close db connections
+		- release resources
+
+	
+
+
+
+=========================================================
+05/03/2026 
+=========================================================
+	Completed: Swathi, Tejaswini, Ravi Kumar
+
+
+	Looping 
+	OOP concepts
+		- Abstraction
+		- Encapsulation
+		- Polymorphism
+
+	Access Specifiers
+		- Public, Private, Protected, Default
+
+	Constructor concepts
+
+	Memory management
+
+
+Looping:
+
+	Execute block of code repeatdly until a specified condition becomes false.
+
+	for loop
+	while loop
+	do-while loop
+
+	break, continue
+	break - used to exit loop immediately
+
+	continue - skip the current iteration
+
+
+	Array: 
+		Collection of elements of the same data type stored in contiguous memory locations.
+
+
+	int[] marks = {80,80,93,41,56}
+
+		0 --> 80 marks[0]
+
+	int[] numbers = new int[5];	
+	numbers[0] = 10;
+	numbers[1] = 30;
+
+	Multidimentional array:
+
+
+Object Oriented Programming
+------------------------
+
+What is an object?
+	Properties
+	Expore behavior
+
+
+Class
+	Class is a blueprint or template used to create an objects.
+	Object (instance of the class)
+
+Class
+	- variables (attributes/properites)
+	- Methods (behaviors/actions)
+
+
+
+
+
+
+
+	1. Abstraction
+	2. Encapsulation
+	3. Inheritance
+	4. Polymorphism
+
+Abstraction:
+	Process of hiding implementation details and showing only essential features to the user.
+
+	focus on what an object does, rather how it does it.
+
+Why Abstractions important?
+	1. Reduce program complexity
+	2. Improves security
+	3. Hide unnecessary implementation details
+	4. Focus on essential functionality
+
+
+How to implement Abstraction?
+	Java provides two ways to implement abstraction
+		1. Abstract class
+		2. Interface
+
+
+Encapsulation:
+	Process of wrapping data (variables) and methods (functions) together into a single class.
+	Encapsulation meaning data hiding and controlled access to the data.
+
+	Why Encapsulatoin?
+		1 Protects sensitive data
+		2 Prevent unauthorized access
+		3 Improves security
+		4 Improve maintainability
+		5 Control how data is access or modified
+
+Inheritance:
+	mechanism by which one class acquires the propertis and behaviors of another class
+
+	Inheritance allows a child class to reuse the code of a parent class.
+
+	Parent
+		- eye color
+		- height
+		- facial features
+
+	Child automattically inherits some of these traits.
+
+	Parent class -> Vehicle 
+	Child class -> Car
+
+
+Why?
+	- Reuse code
+	- Reduce duplication
+	- Improve maintainability
+	- Creates heirarchical relationships
+	- Supports polymorphism
+
+Types of Inheritance:
+	1. Single Inheritance
+	2. Multilevel Inheritance
+	3. Hierarchical Inheritance
+
+Java Does NOT support multiple inheritance with classes
+
+Single Inheritance - One child inherits from one parent
+
+Multilevel Inheritance - A class inherits from another class which is already inherited
+
+	Animal -> Dog -> Puppy
+
+Hierarchical Inheritance
+	Multiple classes inherits from same parent
+
+	  Animal
+
+	Dog   Cat
+
+Why Java doesn't suppport multiple inheritance? 
+
+	class A => method()
+
+	class B -> method()
+
+	class C extends A,B (X) -not supported by java 
+
+	Java cannot determine whether to call A's method or B's method.
+	This is called Diamond problem
+	To avoid this ambiguity, java doesn't allow multiple inheritance with class.
+
+
+super keyword
+	Super keyword refers to the parent class.
+
+
+Polymorphism in Java
+	Polymorphism means "many forms"
+
+	Polymorphism allows one method or object to behave differently in different situation.
+
+	Meaning of word:
+		Poly --> Many
+		Morph -> Forms
+
+	It means, one entity -> many behaviors
+
+
+Ex:
+	Person
+		At office --> Employee
+		At home --> Parent
+		At school -> Student
+		At simplilearn -> Learner	
+
+
+	Shape
+		- Circle
+		- Square
+		- Rectangle
+
+	All shapes have draw() , but each draws differently.
+
+Types of polymorphism:
+	1. Compile time polymorphism
+		(Method overloading)
+
+
+		Multiple methods with the same name but different parameters
+		This method call is resolved during compilation.
+
+	Rules:
+		Method must differ by:
+		1. Number of parameter
+		2. Type of parameters
+		3. Order of parameters
+
+
+		int add(int a, int b);
+		double add(int a, int b);
+		NOT overloading --> return type alone cannot differentiate methods
+
+
+	2. Runtime Polymorphism
+		(Method overriding)
+
+		Dynamic polymorphism
+
+		Occurs when a child class provides a specific implementation of parent class method.
+		The method call is resolved during runtime.
+
+		"OBJECT OF PARENT CLASS CAN REFER INSTANCE OF CHILD CLASS"
+
+Access Specifiers
+
+	Access Specifiers (access modifiers) define the visibility or accessibility of classes, variables, methods and constructors
+
+	Defines who can acacess a particular member of a class
+
+	Types:
+		private
+		default (no modifer)
+		protected
+		public
+
+	Private - allows access only within the same class
+		No other class can access it directly.
+
+	Default - If no modifer is specified, Java Uses Default access.
+			Default members are accessible within the same package only.
+
+	Protected - Protected modifier allows access within same package and also in the subclass from another package
+	
+	Public - Public modifier allows access from anywhere in the program.
+		It has maximum visibility		
+
+Constructor:
+	Specialized block fo code- similar to method - that is automatically invoked when an instance (object) of a class is created.
+
+	Core characteristics:
+		- Name matching : exactly same name as class name
+		- No return type : 
+		- Automatic invocation - new keyword, automatically invoked
+		- Restrictions - cannot declare as static, final, abstract, or synchronized
+
+Types of constructor:
+Default constructor
+	- If you donot declare any constructor --> Default constructor created default no-arg automatically
+	- It initializes numeric fields to 0, and boolean to false, and Object references to null
+
+No-Argument constructor:
+	- A user-defined constructor with no parameters
+	- Useful for setting specific starting value for every object of that class
+
+Parameterized constructor:
+	- Takes arguments to initialize instance variables with custom values at the time of creation
+	- Once you define any parameterized constructor, compiler will not provide its default no-args constructor. you must define it manually if you still need it.
+
+
+Home fun:
+-----------
+
+Create BankAccount class that allows user to open an account with an initial balance, depotit money and withdraw money.
+
+	SavingAccount extends BankAccount
+	CurrentAccount extends BankAccount
+
+
+
+
+
+
+
+
+
+
+=========================================================
+04/03/2026 -- PHASE 2
+=========================================================
+
+What is Java?
+	High level, object oriented, platform independent programming language used to build
+		- Web applications
+		- Mobile, Desktop
+		- Big Data applications
+		- Banking, Cloud based systems, AI
+
+	Sun Microsystems 1995 --> Oracle
+
+	WORA - Write once, run anywhere.
+
+Why Java?
+	1. Platform independent 
+
+	in C/C++
+		Programs compiled on windows cannot run directly on Linux
+
+	But in Java:
+		Java source code --> compiled to Bytecode --> executed by JVM
+
+		.java --> .class --> Runs on JVM --> Runs on any OS
+		
+	2. Object oriented Programming
+	
+			Class, Object, Encapsulation, Inheritance, Polymorphism, Abstraction
+
+	3. Simple and easy to learn
+		
+	4. Automatic memory management
+		malloc()
+		free()
+
+		Garbage collector
+			removing all unused objects from memory.
+
+	5. Secure Language
+
+	Many security mechanisms (JVM)
+	 - Byte code verification
+	 - Security manager
+	 - Class loader
+
+	- Banking applications
+	- Financial systems
+	- payment gateways
+
+
+	6. Multithreading support
+		- 
+
+	7. Rich Standard Library
+		java.lang - core classes
+		java.util - collections
+		java.io   - file handling
+		java.sql  - Database
+		java.net  - Networking
+
+	8. Huge community support
+
+	9. Android applications are mainly built using java or kotlin
+
+-------
+
+JDK vs JRE JVM 
+
+	.java --> java compiler(javac) --> .class (bytecode) --> JVM --> Machine code --> Programs runs
+
+	JDK - Development Kit
+	JRE - Runtime environment
+	JVM - Execution Engine
+
+	JDK --> Complete toolkit used by developers to develop java applications
+
+		- Compiler
+		- Runtime environment
+		- Debugging tools
+		- Developement Utilities
+
+	Without JDK you cannot develop java programs
+
+	JDK
+		JRE
+			JVM
+			Core libraries
+
+		Developement tools
+
+
+	JDK = JRE + Development Tools
+
+
+
+JRE - Java Runtime environment Provides environment required to run Java programs
+
+JRE = JVM + Libraries
+
+	JVM - Abstract machine that executes Java Bytecode
+
+	JVM Converts bytecode -> machine code
+
+	JVM  contains several components:
+		- Class Loader
+			- loads .class file
+				Loading + Linking + Initialization
+
+		- Method Area
+			Class Metadata, Static variables + method code
+
+		- Heap Memory
+			objects created using new keyword
+
+		- Stack Memory
+			Method calls, local variables 
+
+		- Execution Engine
+			- converts your bytecode (JIT compler) -> machine instructions
+
+		- Garbase collector
+			- automatically removes unused objects from heap.
+
+
+Installation
+	JAVA_HOME --> C:\\sw\\Java_home_directory
+
+
+	Open environment variable,
+		add as per above mapping
+
+		Modify existing variable
+			PATH --> %JAVA_HOME%\\bin
+
+
+
+
+Variable:
+	variable is a named memory location used to store data
+		that can change during program execution.
+
+	Variable is a container that holds a value.
+
+
+1. Local Variable
+	Inside method 
+
+2. Instance Variable
+	inside class outside method
+	belongs to object
+	each object has its own copy
+
+	s1 -> name - dhruvik
+	s2 -> name - Ravi
+
+
+3. Static Variable
+	inside class with static keyword (shared across objects)
+
+	- Shared among all objects
+	- Only once copy exist
+
+
+
+Data Types:
+1. Primitive data types
+
+	byte 			1 byte -- 10
+	short 			2 byte -- 200
+	int 			4 byte -- 
+	long 			8 byte
+	float 			4 byte - 10.5
+	double			8 byte - 3.88888886
+	char 			2 bytes
+ 	boolean  		1 bit
+
+2. Non-Primitive Data Types
+	Non-Primitive data types store references to objects
+
+	String - "Hello"
+	Array - int[]
+	Object - Any object
+
+
+Best practices:
+	varialbe name should follow camelCase
+
+	startAge
+	totalAmount
+	accountBalance
+
+Type casting
+	Process of converting from one data type into another data type.
+
+Why Type casting is Required?
+	- Sometimes different data types needs to interact in a program
+
+	int a = 10;
+	double b = 20.5;
+
+	doulbe result = a + b;
+
+		Java must perform int -> double to perform calculation.
+
+Two types of typecasting
+	1. Widening casting (Implicit)
+		converting a smaller data type into larger data type automatically
+
+		byte --> short --> int -> long -> float -> double
+
+	2. Narrowing Casting (Explicit)
+
+		Converting Larger data type into a smaller data type manually.
+
+		Java doesn't do this automatically because data loss may occur.
+
+		double -> float -> long -> int -> short -> byte
+
+	()
+
+Operators:
+	Arithmatic operators (+,-,*, /, %)
+	Relational Operator (==, !=, >, < >=, <=)
+	Logical Operators (AND && OR ||, !=)
+	Assignment Operators (=, +=, -=, *=, /=, %=)
+	Unary Operators		(++, --)
+	Bitwise Operators (&, |, ^ ~, <<, >>)
+	Ternary Operator 
+ 
+int a= 5;
+a++; // a = a+1;
+
+	int x = ++a;
+	x --> 6
+	a -> 6 
+
+	int x = a++;
+	x -5
+	a - 6 
+
+
+
+AND- returns true only if both conditions are true
+
+Ternary operators - condition ? value1: value2
+
+Conditional Statements:
+	if statement
+	if-else statement
+	else if ladder
+	nested if
+	switch statement
+
+
+
+
+
+
+
+
+
+
 
 =========================================================
 26/02/2026
