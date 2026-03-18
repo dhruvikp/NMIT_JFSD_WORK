@@ -26,8 +26,595 @@ This is not just a class - it is a transformation journey.
 
 
 =========================================================
+18/03/2026 
+=========================================================
+Agenda:
+	Multithreading
+		-Fundamentals 
+			process thread difference
+			thread lifecycle
+			creating a thread
+		- Thread.sleep() and Thread.join()
+		- Race condition and synchronization
+		- Inter-thread communication
+
+
+What is Thread?
+	Modern applications need to do multiple tasks simultaneously.
+
+	Ex: 
+		Web server - handle 1000 users
+		Banking app - process transactions + send notifications
+
+
+	A single flow of execution is not enough --> we need concurrency.
+
+Thread - A lightweight unit of execution inside a process
+
+Each thread has:
+	- stack memory (private)
+	- Program counter (PC Register)
+
+ Areas that shared between threads:
+ 	- Heap memory (Objects)
+ 	- Method area/Metaspace
+
+Threads share memory - faster communication
+But it leads to data corruption
+
+Diff between Process and Thread?
+	Process: - 	Independent program 						Unit of execution inside process
+				Seperate memory								Shared memory
+				Slow (IPC)									Fast 
+				Creation cost - high. 						Low
+				Highly isolated								Weakly 
+
+	Process - heavy weight
+	Thread - Lightweight
+
+
+
+Thread lifecycle
+	Thread will go thorugh multiple states inside JVM:
+
+		NEW --> RUNNABLE --> RUNNING --> WAITING/BLOCKED --> TERMINATED
+
+
+		NEW - 	Thread is created but not started.
+				Thread t = new Thread();
+
+		RUNNALBE -  Thread is ready to run (Waiting for CPU Allocation)
+
+		RUNNING  -  Thread is executing
+
+		BLOCKED/WAITING
+				- Waiting for (Lock, I/O, Sleep etc)
+
+
+		TERMINATED
+			- Execution is completed.
+
+
+How many ways to create thread?
+	
+	Primary 2 ways:
+		1. Inheritance based
+		2. Interface based (Preferred way)
+
+class MyThread extends Thread {
+	
+	public void run() {
+		System.out.println("Thread is running");
+	}
+}
+
+MyThread t1 = new MyThread();
+t1.start();
+
+Java doesn't support multiple inheritance
+
+2. Implementing thread using Interface
+	
+	Why Preferred?
+		- Supports multiple inheritance
+		- Better separation of logic
+
+
+sleep
+
+	Sometimes we want a thread to:
+		- pause execution temporarily
+		- Wait before retry
+		- Simulate delay (Network, processing etc)
+
+	Thread.sleep() - allows thread to pause without consuming CPU
+
+	Real-world usecase
+		- Retry mechanism (API retry after delay)
+		- Polling systems
+		- Rate limiting
+		- Simulating latency in testing
+
+
+join
+	"Wait until this thread finishes"
+
+When thread A calls:
+	t.join()
+
+	JVM :
+		- Thread A -> goes into WAITING State
+		- It waits until thread t -> TERMINATED
+
+sleep() = time baed waiting
+join() - Dependency based waiting
+
+
+Practice Problem:
+-----------------
+Print table of 10
+
+ 10 * 1 = 10
+ 10 * 2 = 20
+ 10 * 3 = 30
+
+
+ n=9
+ n=4
+
+
+
+Race Condition
+	Multiple threads share the same memory (heap)
+
+	When they try to read + modify + write the same variable:
+		- Results becomes unpredictable
+
+	Race condition exists because thread execution order is NOT guranteed.
+
+
+count ++ ;
+ This is not a single operation.
+
+ Internally,
+ 	1. Read the value of count from memory
+ 	2. Increment it
+ 	3. Write back to memory
+
+ Two threads:
+ 	T1  reads count = 5
+ 	T2  reads count = 5
+
+ 	T1 increments ==> 6
+ 	T2 increments ==> 6
+
+ 	Final value --> 6 (WRONG, should be 7)
+
+ Lost update problem.
+
+
+Synchrnonization
+	
+	Controlled access to shared resources.
+
+	Ensures one thread at a time enters critical section.
+
+
+JVM LEVEL (Core fundamentals)
+	- Every class has one property - monitor or lock
+	- Java uses intrincic locks 
+
+when we use keyword:
+	synchronized
+
+		JVM does:
+			1. Acquire Lock
+			2. Execute block
+			3. Release lock
+
+Ex:
+	- Only one person allowed to enter in ATM room at a time.
+	- Others must wait
+
+
+Common pitfalls:
+	1. Over - synchronization
+		Too many locks -> performance bottleneck
+
+	2. Wrong Lock object
+		synchronozed(new Object()) {
+
+		}
+
+	3. Multiple locks - > circular waiting
+
+	4. Thread wait --> reduce scalability (blocking nature)
+
+=======================================
+
+
+	Inter-Thread communication
+
+- Synchronization solved data curruption issue (race condition issue)
+- But it doens't solve:
+	- coordination between threads
+
+Ex:
+	- Producer produces data
+	- Consumer consumes data
+
+Without coordination:
+	- Consumer may run when data is not ready.
+
+So we need a mechanism where threads can wait and notify each other.
+
+Java provies 3 methods:
+	wait()
+	notify()
+	notifyAll()
+
+These are defined under java.lang.Object
+
+	
+	Every object has datastructrue
+			monitor/lock - only 1 thread allowed
+			set- Wait List set- {t1, t2, t3}
+
+
+		Wait()
+			- Release lock
+			- add that thread into wait list set
+			- put that thread into block status
+
+		any objects
+		notify() - on that object
+			- any one of the thread selected to start execution Moving from block to running state
+
+		notifyAll() - all threads moved from BLOCKED to RUNNABLE status
+
+
+
+Problem statement:
+
+	Ticket Booking System
+
+	Build a system where:
+		total seats = 5;
+		Multiple threads(users) try to:
+			- book tickets
+			- cancen tickets
+
+	1. Booking:
+		- if seats availalbe -> book immediately
+		- if NOT available -> thread should
+			- go for waiting state (Wait())
+
+	2. Cancellation:
+		When a ticket is cancelled:
+			- increase available seats
+			- Notify waiting threads (notifyAll())
+
+
+	3. Multiple threads
+		atleast:
+			- 3 booking threads
+			- 1 cancellation thread
+
+			
+
+
+
+
+
+=========================================================
+11/03/2026 
+=========================================================
+Agenda:
+Java Collection Framework
+	List
+		ArrayList
+		LinkedList
+		Vector
+
+	Set
+		HashSet
+		LinkedHashSet
+		TreeSet
+
+	Queue
+		PriorityQueue
+		LinkedList
+
+Separate DS:
+	Map
+		HashMap
+		LinkedHashMap
+		TreeMap
+		Hashtable
+
+Utility class - Collections
+	sort, reverse, shuffle, max, min
+
+
+Collection Framework?
+	JCF is set of interfaces, classes, and algorithms used to store, manage, and manipulate groups of objects dynamically.
+	provies ready-made data structures in java
+
+Why Collection framework introduced?
+	Before Java1.2 developers used
+		- Array
+		- Vactor
+		- Hashtable
+
+	Problems:
+		- Fixed size arrays
+		- No standard APIs
+		- Difficult to data manipulations
+		- No reusable algorithms
+
+	Solutions:
+		- Dynamic storage
+		- Standard interfaces
+		- Reusable algorithms
+		- Better performance
+
+List 	- Books arranged in order
+Set     - Unique book Ids
+Queue   - ticket counterline
+Map     - Book ID --> Book Name
+
+Collection Framework Architecture
+
+
+List
+	- Ordered collection of elements that allows duplicates
+
+	[Java, Python, Java, C++]
+
+	List languages = new ArrayList();
+
+		add
+		add(index, value)
+		get()
+		remove()
+		set()
+		size()
+		contains() - searching an element
+
+	ArrayList
+	
+	LinkedList
+		LinkedList is list implementation that stores elements as nodes connected through pointers.
+
+
+	LinkedList is also implements Deque interface, it provides few special methods:
+
+	Insert Operations
+		addFirst()
+		addList()
+		offer()
+		offerFirst()
+		offerLast()
+
+	Remove operations
+		removeFirst()
+		removeLast()
+		poll()
+		pollFirst()
+		pollLast()
+
+	Peek operations
+		peek()
+		peekFirst()
+		peekLast()
+
+
+
+memory overhead
+	data
+	next pointer
+	previous pointer
+
+Memory usage is higher thann ArrayList
+
+When to use LinkedList?
+	- Frequent maipulations (insertions, deletions, queue, stack)etc
+	 Ex: 
+	 	- Undo/Redo systems
+	 	- Browser history
+	 	- Task scheduling
+When Not to use LinkedList
+	- Frequest random access
+	- Large datasets with heavy reads
+	- Memory sensitive applications
+
+------------------
+Set
+
+	Collection that doesn't allow duplicate elements
+	not ordered
+
+Why Set is Needed?
+	- You want some unique data
+	Ex:
+		- Unique UserIds
+		- Unique email address
+		- Unique Product codes
+		- Unique tags
+	If duplicates appear, they must be automatically rejected.
+
+	allow null - one null is allowed
+	dynamic in size
+
+
+LinkedHashSet
+	Maintains insertion order
+
+	two structure:
+		Hash table + Linked List
+
+TreeSet
+	Stores elements in sorted order
+
+	Internally:
+		Red Black Tree datastructure
+
+
+Queue
+	A Queue is a linear data structure that follows FIFO
+
+	The first element inserted into the queue, is the first element removed
+
+	Front --> 10 --> 20 --> 30 --> 40 <-- Rear
+
+	Insertion: --> Rear
+	Remove : Front
+
+	Realworld analogy:	
+		- Ticket counter line
+		- First person in the line --> served first
+
+	PriorityQueue
+
+		add()  - insert element
+		offer() - insert element safely
+		remove - remove elemnt
+		poll -- remove safely
+		peek -- read first element
+
+PriorityQueue
+	special queue where elements are ordered based on priority rather than insertion order.
+
+	PriorityQueue removes elements based on priority (smallest, or highest priority first)
+
+	insert order: 20,10,30,40
+
+	priority queue output: 10,20,30,40
+
+	- Binary Heap datastructure (Min heap)
+
+Usecase:
+	- Task scheduling
+	- Request processing
+	- producer consumer systems 
+
+etc
+
+ArrayDequeue
+	Array Double Ended Queue
+
+	ArrayDequeue is resizable array implementation of the Deque interface, that allows insertion and deletion from both ends
+
+
+	Insert/remove from front
+	insert/remove from rear
+
+	front -> 10 -> 20 -> 30 -> rear
+
+
+Realworld usecases:
+	- Stack imlementaitons
+	- Breadth first search
+	- Undo/Reado systems
+	- Expression evaluation
+
+
+
+Questions?
+	
+	Class - Employee 	
+				firstname, lastname, email, address
+
+			Collection of employees (list)
+			iterate all elements using for each loop
+
+
+Map interface
+
+	Map is datastructure that stores unique key-value pairs
+
+	101 --> Java
+	102 --> Python
+	103 --> C++
+
+
+
+Keys - must be uniqe
+values - can be duplicated
+order - depends on implementaiton (hashmap - not ordered, linkedhashmap, treemap)
+
+Maps are useful when we want fast lookup using keys.
+
+
+4 implementaitons of map interface:
+	1. HashMap
+	2. LinkedHashMap
+	3. TreeMap
+	4. Hashtable
+
+1. HashMap
+	- faster lookup
+	- no order gurantee
+	- allows only one null key
+	- allows multiple null values
+
+
+2. LinkedHashMap
+	Miantains insertion order
+
+	Internal structure:
+		Hash Table + Doubly Linked list
+
+3. TreeMap
+	Maintains sorted order of keys
+
+	Internal structure: Red black tree
+
+
+4. Hashtable
+	Legacy class
+
+
+	Features:
+		- Thread safe
+		- no null keys
+		- no null values
+		- slower performance
+
+Mostly replaced by 
+	ConcurrentHashMap
+
+
+Iterating Map:
+============
+	keySet() --> returning set of key
+
+	covered in example:
+
+Summary
+Faster lookup - HashMap
+Maintains insertion order - LinkedHashMap
+sorted keys - TreeMap (not null allowed as key)
+Thread safe map - ConcurrentHashMap
+
+
+
+
+
+
+=========================================================
 06/03/2026 
 =========================================================
+
+
+Home fun:
+	Explore Generics
+
+
+1. what will happens if we declare class as final?
+
+
+
 Agenda:
 	- Static
 	- Final,
@@ -290,7 +877,7 @@ Best practices:
 		- close db connections
 		- release resources
 
-	
+
 
 
 
