@@ -26,6 +26,269 @@ This is not just a class - it is a transformation journey.
 
 
 =========================================================
+25/03/2026 
+=========================================================
+	- Introduction to Web technology
+	- Client Server Architecture
+	- Types of CS architecture
+	- HTTP Protocol
+	- Servlet
+		- Servlet Architecture
+		- Servlet Lifecycle
+		- Servlet API 
+
+	- Maven Introduction
+	- Running Hello world program                            
+
+-------------------
+Interview Overview:
+-------------------
+
+	"World-wide system of interconnected computer networks"
+	It uses TCP/IP for communication.
+
+	Wifi/Network cable
+	Data packets
+	Address
+
+	Evaluation:
+		1969 - ARPANET
+			US Department of Defense
+			Only 4 nodes
+
+		1972
+			Expanded 23+ locations globally
+
+		Later development:
+			- TCP/IP Communication
+			- DNS protocol (for naming)
+			- WWW (Web system)
+			- Browsers (Client - chorme,..)
+
+		Disadvantages:
+			- Cyberchrime
+			- Data theft
+			- Virus attacks
+
+
+
+Web technology
+	Used to build web applications.
+
+	market languages:
+		HTML,CSS, XML 
+
+	Programming languagess:
+		Java, C++, .NET
+
+	Web Server Technology
+		Apache Tomcat, JBoss, IBM Websphere, which handles client requests
+
+
+	Databases
+		MySQL, Oracle, ... - Store application data
+
+	Business applications:
+		- Payment gateway
+		- 
+
+Client-Server Architecture
+	Types:
+
+		1. 1-Tier Architecture
+
+			All in one system
+
+			UI + Logic + DB
+
+			Problem:
+				- Not scalable
+				- Hard to maintain
+
+
+		2. 2 - Tier ARchitecture
+		Client  --> Server
+
+		Business logic in UI -> Fat client thin server architecture
+		Business logic in  Server -> Thin Client Fat server arhitecture
+
+
+		Issue: Performance drops with users.
+
+
+		3. 3- Tier Architecture
+
+			Presentation layer (UI)
+
+			Business Layer (Backend)
+
+			Data Layer (DB)
+
+		Benefits:
+			- Scalable
+			- Maintablae
+			- Teams can work independently
+
+
+Types of Server
+	Proxy Server
+		Acts as a middle layer
+		Security + Filtering
+
+	Application Server
+		Runs business
+			JBoss, GlassFish, Tomcat
+
+	Web server
+		Apache
+			Serve static Content
+
+	FTP -> File transfer
+	Mail Server -> Email
+	IRC --> Chat system
+	Groupware -> Collaboration tools
+
+
+HTTP Protocol
+	\\\
+
+
+Servlet?
+	Java class that handles HTTP requests and responses on the server side
+
+It runs inside container like Apache Tomcat.
+
+Why Servlet is needed?
+	Before servlet
+		Static HTML --> No dynamic content
+
+	With Servlet
+		Generate Dynamic response (Capability to handle request, execute business logic, prepare reponse and send response back to client)
+		Handles business logic
+
+Client --> HTTP Request --> Tomcat -> Find and invoke Servlet --> DB --> Response -> Client
+
+Servlet Lifecycle
+-----------------
+	
+	1. Loading and Instantiation
+
+		Servlet loaded by container
+
+
+	2. Initialization (init)
+
+
+	3. Request Handling (service)
+
+	4. Destruction (destroy)
+
+
+During lifecycle of servelt , init & destroy method only invoked once 
+	service --> everytime on the request
+
+
+	will check infoServlet is available in the container? if yes, then directly invoke its service method.
+														  if not, then Load class, create an object, invoke init() method and put that under container
+																		Invoke service method
+
+
+Servlet API (Core interfaces and Classes)
+------------------------------------------
+
+	Provided by:
+		javax.servlet and javax.servlet.http package
+
+
+
+	Servlet Interface
+		- void init(ServletConfig config);
+		- void service(ServletRequest req, ServletResponse res);
+		- void destroy();
+
+	GenericServlet
+		- public abstract class GenericServlet implements Servlet
+
+		- abstract service method
+
+		Protocol independent
+		Simplifies lifecycle methods of servlet
+
+	HTTPServlet
+		extends GenericServlet
+		implements abstract service method, and expose/provides
+
+		Provides:
+			- doGet(HttpServletRequest request, HttpServletResponse resp)
+			- doPost(HttpServletRequest request, HttpServletResponse resp)
+			- doPut(HttpServletRequest request, HttpServletResponse resp)
+			- doDelete(HttpServletRequest request, HttpServletResponse resp)
+
+
+HttpServletRequest	
+	used to read reqeust data.
+
+	getParameter()
+	getHeader()
+	getCookies()
+
+
+HttpServletResponse
+	used to send response
+
+	resp.getWriter().write("Hello");
+
+	setStatus()
+	setHeader()
+	sendRedirect()
+
+ServletConfig - Per servlet config
+ServletContext
+	Global config (shared)
+
+
+
+Maven
+	
+	A build automation and dependency management tool for java projects.
+
+
+	Why Maven is needed?
+
+	Before Maven:
+		- Manually downlaod JARs
+		- Add to the classpath
+		- Face version conflicts
+		- No standard proejct structure.
+
+	With Maven:
+		- Auto Dependency download
+		- Standard Structure
+		- Easy for project management
+
+
+
+Steps:
+	
+	1. Create Dynamic web proejct in eclipse
+
+	2. Convert that project to Maven project
+
+	3. Download Tomcat
+		https://tomcat.apache.org/download-90.cgi (Zip file)
+
+	4. Extract zip and store somewhere in your local directory
+
+	5. Configure Eclipse to use tomcat
+
+	6. Create Deployment descriptor (using annotation)
+
+	7. Start server
+
+	8. Run from browser
+	
+
+=========================================================
 18/03/2026 
 =========================================================
 Agenda:
