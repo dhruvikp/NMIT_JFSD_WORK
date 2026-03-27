@@ -26,6 +26,245 @@ This is not just a class - it is a transformation journey.
 
 
 =========================================================
+27/03/2026 
+=========================================================
+JDBC API
+CRUD operation using servlet programming
+
+JDBC API
+	
+	A Java API used to connect and interact with the databases
+
+	JDBC = Bridge between Java Application and database.
+
+Why JDBC?
+	Java cannot directly talk to databases like MySQL.
+
+	So, JDBC provides:
+		Java - JDBC - Database
+
+Core components of JDBC
+
+1. DriverManager
+
+	Manages database drivers.
+
+	Connection con = DriverManager.getConnection(url, user, password);
+
+2. Connection
+	Represents connection to the database.
+
+3. Statement
+	Statement stmt = con.createStatement();
+
+	3 types
+
+4. PreparedStatement(Important)
+	
+	Precompiled SQL (Safe and faster)
+
+	con.prepareStatement("SELECT * FROM users where id= ?");
+
+5. ResultSet
+	Stores the query result.
+
+	ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+
+Steps:
+	1. Load Driver
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+	2. Create Connection
+
+		Connection con = DriverManager.getConnection("jdbc_url","username","password")
+
+		jdbc:mysql://localhost:3306/db
+
+
+	3. Create Statement
+
+		Statement stmt = con.createStatement();
+
+	4. Execute Query
+		ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+
+	5. Process Result
+
+		while(rs.next()) {
+			System.out.println(rs.getString("name"));
+		}
+
+	6. Close Connection
+		con.close()
+
+
+Why use PreparedStatement Object?
+
+	String query = "Select * from users where name = "+ name+"'";
+
+	PreparedStatement ps = con.prepareStatement(
+	"SELECT * FROM users WHERE name=?");
+
+	ps.setString(1, name);
+
+	It prevents SQL injection
+	Faster execution
+	Clean code
+
+	
+
+
+
+
+
+=========================================================
+26/03/2026 
+=========================================================
+- Servlet Filters
+- Servlet Session Management
+
+
+Servlet Filter
+****************
+	
+	A component that intercepts requests and responses before they reach the servlet (and after they leave it)
+
+
+Filter Architecture:
+	Very similar to servlet API
+
+	init() --> doFilter() --> destroy()
+
+
+Filter
+
+	public void init(FilterConfig config);
+		Called only once
+		Used for initialization
+
+
+	pubic void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+		THis is where 
+			your request is intercepted
+			Logic is applied
+
+
+	public void destroy()
+		Cleanup resources
+
+		Called only conce
+
+FilterChain
+	Controls flow
+
+	chain.doFilter(request, response)
+
+	It invokes next filter/servlet in the pipeline
+
+	If not called --> request is stops here.
+
+FilterConfig
+	Init Parameters
+
+
+Usecase?
+	1. Authentication Filter
+	2. Logging Filter
+	3. Compression Filter
+
+	....
+
+
+Session Management
+
+HTTP protocol is stateless protocol.
+	Each request is independent (server doesn't remember previous request)
+
+Ex:
+Req 1 --> Login (username/password)
+Req 2 --> Access dashboard
+
+If server doesn't remember user --> user becomes 'unknown'
+
+Solution:
+ Session management = Technique to maintain user state across multiple requests.
+
+ Types of Session Management
+ 4 main types:
+
+ 1. Cookies
+
+ 	Small data stored in browser
+ 	Sent with every request.
+
+
+ 	Flow:
+ 	 Server -> send cookie --> Browser stores
+
+ 	 Browser -> Send cookie --> Server identifies user
+
+
+ 	Limitations:
+ 		- Not secured
+ 		- Limited size
+ 		- Not used for sensitive data
+
+
+ 2. URL Rewriting
+
+ 	Concept:
+ 		Session ID added in the URL
+
+ 		http://localhost:8080/app/dashboard?sessionId=123
+
+ 	Problem:
+ 		Visible in URL
+ 		Security risk
+ 		Not recommended
+
+ 3. Hiddden For Fields
+
+ 	Store session data hidden in the HTML fields.
+
+ 	<form>
+ 		<input type="hidden" name="username". value="Dhruvik"/>
+ 	</form>
+
+ Limitations:
+ 	- Its not scalable
+ 	- Works only with forms
+
+
+ 4. HttpSession (MOST IMPORTANT)
+
+ 	Client -> Request -> Server
+
+ 	Server creates Session (ID)
+
+ 	Sends session ID (Cookie: JSESSIONID)
+
+ 	Client sends ID in next requests
+
+ 	Server retrieves session
+
+ How do you implement?
+
+ 		HttpSession session = request.getSession();
+ 		session.setAttribute("user", "Dhruvik");
+
+
+Assisted Practice:
+	
+	Create Login page --> Dashboard page
+
+	Add Employee, --> Employee registration form
+					--> submit button (show request received)
+
+
+
+
+
+=========================================================
 25/03/2026 
 =========================================================
 	- Introduction to Web technology
