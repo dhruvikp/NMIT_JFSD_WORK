@@ -26,6 +26,248 @@ This is not just a class - it is a transformation journey.
 
 
 =========================================================
+02/04/2026 
+=========================================================
+	- JSP Action Tags
+	- E2E project using JSP
+
+
+JSP Action Tags?
+	JSP Action Tags are XML based tags used to perform actions at runtime.
+
+
+Directives 	- 	Translation time
+Action Tags -   Runtime
+
+Syntax:
+<jsp:actionName attribute="value" />
+
+
+Why Action Tags?
+	Replace Java Code inside JSP 
+
+1. <jsp:forward>
+	
+	Purpose:
+		Forward request to another resource
+
+		<jsp:forward page="home.jsp" />
+
+		<jsp:forward page="home.jsp">
+			<jsp:param name="user" value ="Dhruvik" />
+		</jsp:forward>
+
+		Request -> JSP -> forward -> another JSP
+
+2. <jsp:include>
+	
+		Purpose:
+			Include another resource at runtim
+
+		<jsp:include page="header.jsp" />
+
+		<jsp:include page="welcome.jsp">
+			<jsp:param name="user" value ="Dhruvik" />
+		</jsp:include>
+
+
+3. <jsp: useBean>
+
+	create or locate JavaBean
+
+	<jsp:useBean id="user" class="com.example.User" scope= "session" />
+
+	if bean exist -> reuse
+	else -> create new
+
+4. <jsp:setProperty>
+	
+	Set bean property
+
+	<jsp:setProperty name="user" property="name" value="Dhruvik" />
+
+
+5. <jsp:getProperty>
+	Get bean propery
+
+	<jsp:getProperty name="user" property="name" />
+
+
+6. <jsp:plugin> (Rare)
+	
+	Ex?
+		Embeded Java applets
+		Not used in modern apps.
+
+		
+
+
+
+
+
+
+
+=========================================================
+01/04/2026 
+=========================================================
+Project:
+Library Management System - CRUD
+
+NO RESPONSE
+
+
+*************************
+What is JSP?
+	A technology used to create dynamic web pages using HTML + Java Code
+
+out.println("<h1>Hello</h1>");
+
+<h1>hello</h1>
+
+JSP = HTML First + Java Inside
+
+
+JSP is internally converted into a Servlet
+	JSP -> translated -> Servlet -> Compiled -> Executed.
+
+Problems with Servlet?
+	1. HTML inside Java (Messy)
+	2. Hard to read and maintain
+	3. No seperation of concerns
+	4. Large applications becomes unmanageable.
+
+JSP?
+	1. Seperation of concerns
+		HTML -> JSP
+		Logic -> Java
+
+	2. Easy to write UI
+	3. Automatic compilations
+		JSP -> Servlet 
+	4. Better for maintainability
+
+
+Many implecit objects (9) --> that makes it easy to work.
+
+JSP Lifecycle
+	
+	1. Translation
+	2. Compiled
+	3. Class loading
+	4. Intialization (_jspInit())
+	5. Request Processing (_jspService())
+	6. Destruction (_jspDestroy())
+
+
+JSP Tags: (Allows you to write java code inside jsp file)
+
+1. Scriptlet Tag
+	<%  Java code %>
+2. Express Tag
+	<%= expression %>
+
+	Prints output directly
+3. Declaration Tag
+	
+	<%! %>
+
+	Declare instance variables/methods
+
+JSP Implicit Objects:
+	Predefined objects automatically available in JSP page
+
+You don't need to create them manually.
+
+Why do they exist?
+	In servlets, you write:
+		HttpServletRequest request;
+		HttpServletResponse response;
+
+	In jSP, these are already available:
+		<%= request.getParameter("name") %>
+
+JSP Simplifies development by providing ready-to-use objects
+
+9 Implicit objects:
+
+request 			HttpServletRequest 			Client request data
+response 			HttpServletResponse 		Send response
+out 				JspWriter 					Print output
+session 			HttpSession 				Session management
+application 		ServletContext 				App-wide attributes
+config 				ServletConfig 				Servlet config
+pageContext 		PageContext 				Access all objects (request, application, session, page)
+page 				Object(this)				Current JSP instance
+exception 			Throwable 					Error handling
+
+--------------------
+
+	JSP Directives
+
+	JSP Directives are instructions to the JSP container that affect how the JSP is translated into a servlet and executed.
+
+
+	Directives do NOT produce Output
+	They control:
+		- Imports
+		- Configuration
+		- Includes
+
+
+	<%@ directive attribute="Value" %>
+
+
+	Types of directives:
+		page 			-   Configure JSP Page
+		include 		-   Includes another file
+		taglib 			-   Use custom tags (JSTL)
+
+
+a. Page directive (Most important)
+
+	Purpose:
+		- Import
+		- content type
+		- Error handling
+		- Session usage
+
+index.jsp:
+--------
+	<%@ page errorPage="error.jsp" %>
+
+
+error.jsp:
+--------
+	<%@ page isErrorPage = "true" %>
+
+	<$@ page isThreadSafe="false" %>
+		Avoid multiple threads
+
+
+Include Directive
+*******************
+
+	Includes content of another file at translation time
+
+Included file becomes part of JSP at compile time
+
+JSTL Tag library
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+
+Assisted Practice:
+	Create a webpage - Login + Dashboard + Logout
+
+	
+
+
+
+
+
+
+
+=========================================================
 27/03/2026 
 =========================================================
 JDBC API
@@ -111,9 +353,10 @@ Why use PreparedStatement Object?
 	Faster execution
 	Clean code
 
-	
+Project:
+Library Management System - CRUD
 
-
+Similar to the employee
 
 
 
@@ -259,6 +502,10 @@ Assisted Practice:
 
 	Add Employee, --> Employee registration form
 					--> submit button (show request received)
+
+
+
+
 
 
 
