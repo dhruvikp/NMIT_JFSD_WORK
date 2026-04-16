@@ -24,6 +24,611 @@ Instructions:
 
 This is not just a class - it is a transformation journey.
 
+=========================================================
+10/04/2026 
+=========================================================
+Agenda:	
+	MVC
+	Why MVC is needed?
+	How Spring boot has implemented MVC Frameowrk?
+	Example -->
+
+
+MVC?
+	MVC is an architectural design pattern used to seperate concerns in an application.
+
+	It divides your application into 3 parats:
+		1. Model
+
+			- Handles data + business logic
+			- Interact with DB
+
+
+		2. View
+			- Responsible for UI (What user sees)
+			- In Java, HTML, JSP, Thymeleaf(Template engine)
+
+
+		3. Controller
+
+			- Acts as a middleman
+			- Receives request -> processes --> returns response
+
+			
+
+
+
+
+
+	
+=========================================================
+10/04/2026 
+=========================================================
+Spring 
+Advantage of Spring
+Dependency Injection with example
+Types of DI, Setter Dependency Injection and Constructor Dependency Injection
+Spring Architecture
+Application Context
+Bean Factory
+With example
+
+:: Spring Boot Advantage ::
+
+------------
+
+What is Spring Framework?
+
+	Spring is a lightweight, modular framework used to build enterprise java applications.
+
+
+Core idea:
+	- "Don't create objects manually, let spring manage them"
+
+
+This is achieved using:
+	- Dependency Injection (DI)
+	- Inversion of Control (IoC)
+
+Advantage:
+	- Loose coupling
+			objects don't create dependencies -> spring injects them
+
+	- Easy to test 
+	- Modular Architecture
+		- Spring core
+		- Spring mVC
+		- Spring Data
+		- Spring security etc
+
+	- Reduce boilerplate code
+		No need for:
+			- Manual object creation
+			- Complex configurations
+
+	- Integration friendly
+		- Hibernate
+		- JDBC
+		- REST API
+		- Kafka ....
+
+
+Dependency Injection (DI)
+---------------------------
+
+	Instead of creating objects inside class --> dependencies are injected from outside
+
+	class Car {
+		Engine engine = new Engine();
+	}		
+
+
+	With DI 
+	class Car {
+		Engine engine;
+
+		Car(Engine engine) {
+			this.engine = engine;
+		}
+
+		public void setEngine(Engine engine) {
+			this.engine = engine;
+		}
+	}
+
+
+	Types of Dependency Injection:
+
+		a. Constructor based DI
+		b. Setter based DI
+
+
+Spring Architecture:
+	
+	Spring Core Container:
+		Includes:
+			- Core
+			- Beans
+			- Context
+			- Expression (SpEL)
+
+		IOC
+		 -SPring create and manages this object
+
+	AOP (Aspect Oriented Programming)
+		Purpose: Handles all corss-cutting concerns
+
+		Ex:
+			- Logging
+			- Security
+			- Transactions
+
+	Data Access Layer
+		- JDBC
+		- ORM
+		- JPA
+		- Transaction Management		
+
+	 Features:
+	 	- Simplifies DB code
+		- Handles exceptions
+		- Manages transactions
+
+	Web Layer
+		Includes:
+			- Spring MVC
+			- REST API
+
+
+
+Spring IOC (Inversion of Control)
+
+	Spring controls object creation and lifecycle.
+
+	Normally:
+		You control object creation
+
+	With IoC:
+		Spring controls object creation
+
+		Control is inverted
+
+
+	BeanFactory
+	
+	ApplicationContext
+		- Creates objects (Beans)
+		- Injects its dependencies
+		- Manages lifecycle
+
+		i18
+		Event publishing functionality
+		Easy integration with AOP
+		Web support
+
+
+
+Spring Boot
+-------------
+
+	purpose: Minimize infrastructure so that you focus on business logic.
+
+	- Easy way to develop spring based application
+	- Reduce development time and increase productivity
+	- Avoid lots of boilerplate code, annotaitons or XML configuraitons
+	- It is very easy to integrate spring boot with spring ecosystem modules like JDBC, ORM, Data, Security etc...
+	- Embeded tomcat server
+	- provides lots of plugins to work with embedded or in-memory db very easily..
+
+
+
+	how to create spring boot app?
+		https://start.spring.io/
+
+
+
+
+
+
+
+
+
+
+
+=========================================================
+09/04/2026 
+=========================================================
+
+MongoDB Index:
+---------------
+	
+	An Index is a special data struvture that improves the speed of data retrieval operations.
+
+	Without index, MongoDB performs a collection scan, meaning it checks every document in the collection.
+
+	With index, MongoDB can directly locate the required document.
+
+		BTree		
+
+		name
+
+  Compound Index:
+  	An Index created on multiple fields.
+
+
+
+  MultiKey Index
+  ----------------
+  	Used when indexing an array fields.
+
+  	MongoDB creates separate index entries for each array element
+
+  	 	{
+	  	 	name: "Rahul",
+  		 	skills: ["java","mongoDB", "Spring"]
+  	 	}
+
+  	 db.users.createIndex({skills:1})
+
+
+  Text Index 
+  --------------
+  	Used for text search operations
+
+  	Allows searching words inside string fields.
+
+  	db.articles.createIndex({content: "text"})
+
+
+  	db.articles.find({
+  		$text: {$search: "Mongodb database"}
+  	})
+
+  Unique Index
+  -----------
+  	Ensures valeus in a field are unique
+
+  	No two documents can have the same value.
+
+  	db.users.createIndex({email:1}, {unique:true})
+
+  		prevents duplicate email address
+
+  TTL index (Time to Live)
+
+  	Automatically deletes documents after certain time.
+
+  	Useful for:
+  		- Session data
+  		- Logs
+  		- temporary records
+
+  	db.sessions.createIndex(
+  	{createdAt: 1},
+  	{expireAfterSeconds: 3600}
+
+  	)
+
+
+
+  If you are not creating any index, MonogDB automatically creates an index on _id field.
+
+How do you check query performance in MongoDB?
+----------------
+
+Phase end project
+--------------
+
+
+Participants
+batches
+
+
+Add/Update Batch
+Add/Update Participants
+
+
+=========================================================
+08/04/2026 
+=========================================================
+
+What is MongoDB?
+------------------
+	MongoDB is NoSQL document oriented database designed for storing and managing large volumes of data.
+
+	Instead of storing data in tables and rows (MySQL), MongoDB stores data as documents inside collections
+
+	Documents are stored in a format called BSON (Binary JSON)
+
+Database - Container for collections.
+
+Collection - Similar to the tables in relational database
+
+Document - Similar to row in relational database
+	contains key-value pairs.
+
+Ex: 	
+{
+	name: "john",
+	age: 30,
+	department: "IT"		
+}
+
+Why MongoDB?
+--------------
+	- Schema flexibility - 
+	- High performance
+	- Horizontal Scalability - Sharding - which distribute data across multiple servers
+	- JSON like Documents - 
+	- Rich query support
+		- filter data, aggregate, perform analytics
+
+
+MongoDB Ecosystem:
+------------------
+Large ecosystem tools and services to support development, analytics and database management.
+
+MongoDB Core:
+	- Main database engine
+It handles:
+	- Data storage
+	- Query processing
+	- Indexing
+	- Replications
+	- Sharding
+
+This is a central component of the mongoDB.
+
+MongoDB Atlas
+	- cloud based database service provided by MongoDB
+
+	Features:
+		- Fullly managed database
+		- Automatic backups
+		- Built-in monitoring
+		- Auto scaling
+		- Global deployment
+
+MongoDB Realm
+----------------
+	- Mobile and application develpment platform
+	- Allows developers to build applications with
+		- real-time data synchronization
+		- Authentication services
+		- Serverless functions
+
+MongoDB Compass	
+---------------------
+	- GUI tool for MongoDB
+
+	Features:
+		- visual data explorations
+		- Query building
+		- Performance analysis
+		- Index management etc
+
+MongoDB Connector for BI
+----------------------
+	- Allows sql based tools to access MongoDB data.
+	Integraiton with:
+		- Tableau
+		- Power BI
+		- Excel
+
+MongoDB Charts:
+------------
+	- Data visualization tool
+	- Allows users to create charts and dashboards directly from MongoDB data.
+
+MongoDB Drivers:
+------------
+	- Java
+	- Python
+	- NodeJs
+	- C#
+	- Go
+	etc
+
+	ODM - mongoose for nodejs
+
+
+installation?
+------------
+	1. Download MongoDB Community Server
+	2. Install MongoDB
+	3. Configurate database directory
+	4. Starting MongoDB Server - PORT
+	5. Connecting MongoDB thorugh Shell or c
+
+
+	MongoDB Server
+		|
+		V
+	Database
+		|
+		V
+	Collection
+		|
+		V
+	Document
+		|
+		V
+	Fields (Key-value pairs)
+
+
+
+CRUD
+	
+	db.collection.udpateOne(filter, update)
+
+	db.collection.updateMany(filter, update)
+
+	db.collection.deleteOne(filter)
+
+	db.collection.deleteMany({})
+
+
+Data Modelling in MongoDB
+
+ Data Modelling is the process of designing how data will be structured, and related inside a database.
+
+ How documents are structured?
+ How collections should be organized?
+ How relationships between data should be represented?
+ Whether data should be embedded or referenced?
+
+ Types:
+ 	1. One-to-One relationship
+ 	2. One-to-Many Relationship
+ 	3. Many-to-Many Relationship
+
+ 	Two approaches in MongoDB
+
+ 		a. Embedded Documents
+ 		b. Document References
+
+ 	One-To-One relationshp
+ 		One document in a collection is related to exactly one document in another collection
+
+ 		Emp - Passport
+
+Embedded:
+
+ 		{
+ 			name: "Rahul",
+ 			age: 30,
+ 			passport : {
+ 				passportNumber: "A123455",
+ 				country: "India",
+ 				expiryDate: "2030-05-20"
+ 			}
+
+ 		}
+
+Referencing:
+	If data is large or accessed seperately, referencing can be used.
+
+users collection
+----------------
+	{
+		_id: ObjectId("101"),
+		name: "Rahul Sharma",
+		age: 30,
+		passport_id : ObjectId("501")
+	}
+
+Passport collection
+-----------------
+	{
+		_id: ObjectId("501"),
+		passportNumber: "A1234566",
+		country:"India"
+		expiryDate: "2030-05-20"
+	}
+
+
+One-to-Many Relationship
+	One document in a collection can be related to multiple documents in another collection.
+
+	Ex: Customer has Orders system
+
+	Custer --> Orders
+		1.      Many
+
+Many-to-Many relationship
+	Multiple documents in one collection are related to multiple documents in another collection
+
+	Ex: Students --> Courses
+		M 				M
+
+MongoDB usually uses referencing for many-to-many relationship
+
+
+Best practices:
+	1. Embed data when related data is frequently accessed together
+	2. Use references when data grows large or frequently updated
+	3. Avoid extremely large documents
+	4. Design documents based on application query patterns
+	5. Keep frequenlty accessed data in same document
+
+
+MongoDB Schema Validation
+------------------------
+	{
+		name: "Rahul",
+		age: "Twenty Five"
+	}
+
+	{
+		name: "Priya",
+		city:"Mumbai",
+		salary: 50000
+		age: 25
+	}
+
+1. Inconsistent data structure
+2. Incorrect Data types
+3. Missing required fields
+4. Data Integrity Issues
+
+Schema validations - Important
+	- Enforces rules on document before they are inserted or updated in a collection
+
+
+JSON Schema - to define validation rules.
+
+	JSON SChema describes:
+		- Required fields
+		- Data types
+		- Allowed values
+		- Field constraints
+
+Syntax:
+	db.createCollection("collName", {
+		validator: {
+			$jsonSchema: {
+				bsonType: "object",
+				required: ["field1","field2"]
+				properties: {
+					field1: {bsonType: string},
+					field2: {bsonType: int}
+				}
+			}
+		}
+
+
+	})
+
+Ex:
+	db.createCollection("users", {
+	validator: {
+	$jsonSchema: {
+		bsonType: "object",
+		required: ["name", "email", "age"],
+		properties: {
+			name: {
+				bsonType: "string",
+				description: "must be a string and is required"
+			},
+			email: {
+				bsonType: "string",
+				description: "must be string and is required"
+			},
+			age: {
+				bsonType:"int",
+				minimum: 18,
+				description: "must be an integer greater than 18"
+			},
+			isActive: {
+				bsonType: "bool",
+				description: "must be boolean"
+			}
+		}
+	}
+	}
+	})	
+
+
 
 =========================================================
 02/04/2026 
