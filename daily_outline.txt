@@ -24,6 +24,73 @@ Instructions:
 
 This is not just a class - it is a transformation journey.
 
+
+
+=========================================================
+21/04/2026 
+=========================================================
+
+REST - Representational State Transfer
+	- REST Constraints
+	- E2E application
+REST- is an architectural style for designing networked applications.
+
+REST - Working based on resources
+
+Everythig is treated as a resource:
+	- User
+	- Order
+	- Product
+	---=000
+
+Resource is identified using URL 
+	
+	/users/101
+
+
+REST Principles ( Constraints )
+	
+	1. Client Server 
+
+		Client -> React , Mobile, For testing Postman
+		Server -> Backend (Java Spring Boot)
+
+	2. Stateless
+
+		Eac request is independent to ech other.
+
+			- No Session stored on server
+			- Every request contains all required info as part of request itself
+
+		HTTPAuthentication -> BASIC, Barrier - OAuth, JWT
+
+	3. Uniform Interface
+
+		Standard way of communiation using
+			- HTTP methods
+			- URI
+			- Status codes
+
+	4. Cacheable
+		Responses can be cached for performance
+
+	5. Layered System
+		Client doesn't know if it talks to:
+			- API Gateway
+			- Load balancer
+			- Acutal server
+
+		GET	/users/4
+
+
+
+
+
+
+
+
+
+
 =========================================================
 10/04/2026 
 =========================================================
