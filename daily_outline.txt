@@ -25,6 +25,333 @@ Instructions:
 This is not just a class - it is a transformation journey.
 
 
+=========================================================
+23/04/2026 
+=========================================================
+
+Monolythic vs SOA vs Microservice architecture pattern 
+Service Discovery and API Gateway design pattern with implementtion
+
+
+Monolythic Architecture:
+--------------------------
+	Entire application is built as one single unit (one codebase, one deployment)
+
+Everything is tightly coupled:
+	- UI
+	- Business Logic
+	- Database access
+
+Advantage:
+	- Easy to develop (initially)
+	- simple deployment
+	- easier debugging
+	- Good for small teams
+
+Problems:
+	- Hard to scale specific parts
+	- Full redeployment needed for small changes
+	- Technology lock-in
+	- Becomes messy as it grows (Big ball of mud problem)
+
+
+SOA (Service Oriented Architecture)
+-----------------------------------
+	SOA breaks the system into multiple services, but:
+		- services are larger, business-level units and often share infrastructure
+
+	Each services communicate over netwrork (ESB - Enterprise service bus)
+
+Characteristics:
+	- services are coarse-grained
+	- centralized communication (ESB)
+	- Often use SOAP/XML (traditional systems)
+
+
+Advantage:
+	- Better modularity than monolith
+	- Reusable services
+	- Integration across enterprise systems
+
+
+Disadvantage:
+	- ESB becomes bottlenecl
+	- Complex governance
+	- Still sommewhat tightly coupled
+	- Hard to scale independently
+
+
+Microservice Architecture
+------------------------------
+Small , independently deployable services
+
+Each service:
+	- has its own database
+	- is independently deplyable
+	- Focuses on single responsibility
+
+Characteristics:
+	- Decentralized data management
+	- Independent scaling
+	- CI/CD piepliene
+
+
+Advantage:
+	- Highly scalable
+	- Faster development 
+	- Fault isolation
+	- technology flexibility	
+
+
+
+
+
+
+
+Service Discovery
+
+	Problem:
+
+	In microservices, services are dynamic
+		- Instances scale up/down
+		- Ips or Port change
+	So, hardcoding URLs like
+		http://locallhost:8080/users
+
+	Solution?
+		- A mechanism where services register themselves and find each other dynamically
+
+
+	Two types of service discovery:
+		1. Client side discovery
+			client ask registry -> gets service instance --> calls it
+
+		2. Server side discovery	
+			client calls load balancer -> it resolves service
+
+
+		Eureka, --> mostly use client side discovery
+
+What is Eureka?
+	Netflix Eureka
+		A service registry where microservices:
+			- register themselves
+			- discover other services
+
+
+	Ex:
+		user service
+		order service 				> register to Eureka server (registry)
+		payment service
+
+
+		client -> ask Eureka -> gets service -> calls it
+
+1. Eureka server
+	registry (who is alive?)
+
+2. Eureka Client
+	Registers itself
+	fetch other services
+
+
+
+API Gateway 
+	
+	API Gateway is single entry point for all client requests in microservice system.
+
+client -> API Gateway -> Microservices
+
+Why?
+	- Client must know all service URLs
+	- Multiple network calls
+	- Security - 
+	- 
+
+With API Gateway
+	- Single endpoint
+	- Centralized
+		- Routing
+		- Authenticaiton
+		- Logging
+		- Rate limiting
+
+
+Client -> API Gateway --> Via Eureka identify service location -> Gateway find out location of user-service --> invokes it
+
+
+
+
+
+
+=========================================================
+22/04/2026 
+=========================================================
+
+REST Exception Handling
+----------------------
+
+	
+	@ControllerAdvice
+	@RestControllerAdvice
+	@ExceptionHandler
+
+
+What is Hibernate?
+	Hibernate is an ORM framework that maps java objects -> database tables.
+
+	Instead of writing SQL like:
+		INSERT INTO user(id, name) VALUES (1, 'Dhruvik');
+
+
+	You will write:
+		User u = new User(1, 'Dhruvik');
+		session.save(u);
+
+	Hibernate will converts this into SQL behind the scenes.
+
+What problem does Hibernate solve?
+	
+Before hibernate:
+	- YOu write JDBC code
+	- Handle connections
+	- Write SQL manually
+	- Convert Resultset -> java objects
+
+This leads to:
+	- Boilerplate code
+	- Error-prone mapping
+	- Tight coupling with DB
+Hibernate solve this with:
+	- ORM (Object relational mapping)
+
+
+What is ORM?
+
+ORM = Mapping between:
+	Java class <-> Table
+	Object <-> Row
+	Field <-> Column
+
+
+Core components of Hibernate:
+----------------------------
+	1. Configuration object
+
+		- Reads DB Settings
+		- Uses hibernate.cfg.xml or properties
+
+
+	2. SessionFactory
+
+		- Heavy object (created only once)
+		- Thread safe
+		- Create sessions
+
+	3. Session
+		- Lightweight
+		- Represents a DB connection
+		- Used for CRUD operations
+
+	4. Transaction
+		- Ensures data consistency
+
+
+
+What is Spring Data JPA?
+
+	JPA - Java Persistence API (Specification)
+	Hibernate ORM (implemenation)
+
+	It removes boilerplate code and lets you interact with DB using interfaces instead of implementation.
+
+Why do we need it?
+	Hibernate already does ORM, 
+
+	Because Hibernate:
+		- Requires manual session handling
+		- Requires DAO layer code
+		- More boilerplate
+
+	SpringData JPA:
+		- Eliminates DAO implemenation
+		- Auto-generates queries
+		- Integrates with spring boot easily
+		- provides pagination, sorting, auditing etc
+
+Core concept:
+	
+	You define Repository interface
+
+	Spring automatically creates implementation at runtime.
+
+	JpaRepository
+
+	public interface UserRepository extends JpaRepository<User, Long> {
+
+	}
+
+	thats it, no implementation required.
+
+	what you get ?
+		- save()
+		- findById()
+		- findAll()
+		- deleteById()
+		- count()
+		..
+		..
+
+	Custom query methods:
+		List<User> findByName(String name);
+		List<User> findByNameAndAge(String name, int age);
+
+	No SQL needed.
+
+	Custom queries:
+		@Query("Select u FROM User u where u.name = :name") 
+		List<User> getUserNative(String name);
+
+		-->
+
+In Memory Database
+------------------
+	An In-Memory DB stores data in RAM instead of Disk.
+
+	means:
+		- Dat is extremely fast to acccess
+		- But lost when acpplication stops
+
+	Characteristics:
+		- Ultra-fast (no disk I/O)
+		- Temporary by default
+		- Lightweight setup
+		- Mostly used for:
+			- Testing
+			- Prototyping
+			- Caching
+
+	H2 Database
+	HSQLDB
+	Apache Derby
+	Redis
+
+	H2 Database:
+		Lightweight java based relational DB
+		Supports in-memory + file based modes
+		Commonly used with spring boot
+
+	H2:
+		- Zero setup code
+		- Embedded inside application
+		- works perfectly fine with Spring data jpa
+		- great for unit testing
+
+	<dependency>
+
+		add dependency
+	
+
 
 =========================================================
 21/04/2026 
