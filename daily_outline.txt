@@ -24,6 +24,425 @@ Instructions:
 
 This is not just a class - it is a transformation journey.
 
+=========================================================
+30/04/2026 
+=========================================================
+	
+Spring Cloud config server
+**************************
+
+	
+	A--> application.properties
+
+		applicaton-{env}.properties
+
+	B --> application.properties
+
+	C --> application.properties
+
+	D --> application.properties
+
+
+Problems:
+	- Configuration scattered across services
+	- Hard to update
+	- Requires redeployment after each update
+	- Risk of inconsistency
+
+
+
+A centralized configuration server that manages all application properties for multiple microservices.
+
+Benefit:
+- Centraled config
+- Change config without redployment
+- Environemnt vased config
+- Version control (GIT)
+
+A -> config server -> A
+
+
+How to implement?
+	you have to start one application
+		
+		spring-cloud-config-server
+
+ 	@EnableConfigServer
+	App.java 
+
+
+	Applicaton.properteis
+		spring.cooud.config.server.git.uri = "https://github.com/your-repo/config-repo"
+
+
+
+
+FEIGN CLIENT
+*************
+Problems with REST Tempalte code:
+	- Boilerplate code
+	- Hard to maintain
+	- Manual error handling
+
+
+What is FEIGN CLient?
+
+	Feign is a declarative REST client in spring cloud that lets you call APIs using interfaces instead of writing HTTP code manually.
+
+
+Ex:
+	instead of
+	restTempalte.getForObject(url, String.class)l
+
+
+
+Your just write:
+	
+	@FeignClient(name="USER-SERVICE")
+	public interface UserClient {
+
+		@GetMapping("/users/{id}")
+		String getUser(@PathVariable int id);
+	}
+
+Usage:
+	@Autowired
+	UserClient client;
+
+Feign Benefits:
+	- Clean interface based code
+	- Integration with Eureka
+	- Load balancing built-in
+	- Easy to add fallback(Circuite breaker)
+
+
+Spring AOP
+
+Problem (Cross-Cutting concerns)
+
+	public void placeOrder() {
+
+		log.info("") //logging
+		validateUser() // security
+		processPayment() // business logic
+		log.info("end") // logging
+	}
+
+
+	Same logging and securty code repeats across methods..
+
+
+Solution: AOP
+	Sepearate cross-curring concerns (logging, security, transactions) from business logic
+
+	AOP - Apply logic around method execution without changing method.
+
+
+	1. Aspect
+		A class that contains cross-cutting logic
+
+
+		@Aspect
+		class LoggingAspect {
+
+		}
+
+	2. Join Point
+		A point in execution (usually a method call)
+
+		orderservice.placeOrder();
+
+	3. Advice
+		What action to perform
+
+	Types:
+		- Before 					- @Before
+		- After 					- @After
+		- Around (most powerful)    - @Around (Before + After)
+		- After success  			- @AfterReturning
+		- On Exception 				- @AfterThrowing
+
+	4. PointCut
+		Expression that selects where advice applies
+
+		execution(* com.app.service.*.*(..))
+
+	5. Weaving
+		Process of applying aspect to target
+
+		Spring does this at runtime using proxies.
+
+
+
+- How SPring AOP works internally?
+	
+	Uses proxy pattern
+
+	- if bean is called - proxy intercepts
+	- Proxy executes aspect
+	- then actuall methods calls
+
+
+Common Usecases?
+	- Logging
+	- Security (Authorization)
+	- Transactions (@Transactional uses AOP internally)
+	- Performance monitorign
+	- Caching
+	...
+
+Limitations of AOP
+	- Works only on spring beans
+	- Only method level (not fields/constructors)
+	- Uses proxis
+
+
+
+
+
+=========================================================
+29/04/2026 
+=========================================================
+
+	Circuit Breaker
+
+
+A circuite breaker prevents your system from repeatedly calling a falling service and causing cascading failures.
+
+A 	B 	C 	D
+
+Order service --> Payment service
+
+without circuit breaker:
+	- Payment service is DOWN
+	- Order service keeps calling
+	- Threads get blocked
+	- System crashes (Cascading failure)
+
+With circuit breaker:
+	- Detect failure
+	- Stop calling temporariy
+	- Return fallback response
+
+
+Circuite Breaker States 
+	
+	3 states
+
+	1. CLOSED (Normal)
+		- calls are allowed
+		- Monitoring failures
+		If failures exceed threshold --> OPEN
+
+	2. OPEN (BLOCKED)
+
+		- Calls are NOT Allowed
+		- Immediate fallback returned
+
+		After some time, --> HALF OPEN
+
+	3. HALF-OPEN (Testing)
+
+		- Allow few test requests
+		- If success -> Closed
+		- If failure -> OPEN Again
+
+
+Resilience4j
+	(Hystrix)
+
+	- import dependency
+
+	configure threshold in application.properties
+
+
+	resilience4j:
+		circuitbreaker:
+			instances:
+				paymentService:
+					failureRateThreshold: 50
+					minimumNumberOfCalls: 5
+					waitDurationInOpenState: 10s
+					slidingWIndowSize: 10
+
+
+
+				@CircuiteBreaker(name="paymentService", fallbackMethod="fallbackPayment")
+					callingPaymentService()
+
+				
+
+				public String fallbackPayment(Exception e) {
+					return "Payment Service is down. Please try later."
+				} 
+
+
+Distributed Tracing:
+	Sleuth, Zipkin
+
+
+Why Tracing is needed?
+
+	clinet -> API Gateway -> order serivce --> Payment service -> Notification Service
+
+	one request = multiple service calls.
+
+	Without Tracing:
+		- Logs are scattered across services
+		- Hard to debug
+		- You don't know:
+			- which request failed?
+			- where latency happened? etc
+
+
+	With Distributed Tracing:
+		 you can track a request end-to-end across all services.
+
+What is Distributed Tracing?
+	A way to track a single request across multiple microservices using unique identifiers.
+
+
+1. Trace ID
+	Unique ID for entire request flow
+
+
+2. Span ID
+	represents one service call
+
+
+Ex:
+
+	Trace ID: abc123
+
+	API Gateway: -> span1
+	Order service: -> span2
+	Payment service: -> span3
+
+	All linked using same Trace ID
+
+
+Spring Cloud Sleuth?
+
+	Role:
+		Automatically adds:
+			Trace ID
+			Span ID
+
+		Injects into logs
+		Propogate across services
+
+Zipkin?
+	Role:
+		Collects trace data
+		Visualize request flow
+
+
+
+	Sleuth => "Generate tracking info"
+	Zipkin => "Visualize trackign info"
+
+zipkin server-->
+
+Service:
+	sleuth -- spring-cloud-starter-sleuth
+	zipkin -- spring-cloud-starter-zipkin
+
+
+
+	zipkin.base-url:""
+
+
+Kafka
+
+	Kafka is distributed event streaming platform used to publish, store and process real-tie data streams.
+
+
+	High speed messaging ystem + durable log storage
+
+
+
+Core Kafka Terminologies:
+	1. Producer
+		Service that sends data to kafka (MB)
+
+		Order service sends "order created"
+
+	2. Consumer
+		Service that reads data from kafka
+
+		Ex:
+		payment service consume order event
+
+	3. Topic
+		A category or channel where messages are stored
+
+		Ex:
+			order-events
+			payment-events etc
+
+	4. Partition
+		A topic is slplit into multiple partitions for scalability
+
+		- Parallel processing
+		- High throughput
+
+	5. Offset
+		Unique number for each message in a partition
+
+	Partition-0
+
+		offset 0-> event1
+		offset 1 -> event2
+
+		used for trackign consumption
+
+	6. Consumer Group
+		Group of consumers sharing workload
+
+		Rule:
+		One Partition -> one consumer (within group)
+
+
+	7. Broker
+		A Kafka broker is a server that stores and servce data
+
+		cluster:
+			Broker1:
+			Broker2:
+			Broker3:
+
+		Data is distributed across brokers.
+
+		Responsibility of broker:
+			- Stores message
+			- Handle producer writes
+			- Serve consumer reads
+			- Replicate data
+
+	8. Kafka Cluster
+		Collection of multiple brokers
+
+	9. Replication
+		Copies of data across brokers for fault tolerance.
+
+
+	10. Zookeeper(legacy)/ KRaft (Modern)
+		- Manages cluster metadata
+		- leader election
+
+
+Flow:
+	Order service sends events
+	Kafka stores in topic
+	Partition assigns offset
+	Consumer reads event
+	Offset updated
+
+
+CRUD Operation
+
+
+
 
 =========================================================
 23/04/2026 
