@@ -24,6 +24,82 @@ Instructions:
 
 This is not just a class - it is a transformation journey.
 
+
+=========================================================
+06/05/2026 
+=========================================================
+
+What is JUnit?
+
+	JUnit is a Java framework used for testing Java code automatically.
+
+It helps developers check whether their code works correctly.
+
+Instead of manually running programs and checking outputs, Junit runs tests automatically and tells:
+	- which code passed
+	- which code failed
+
+
+
+int add(int a, int b) {
+	returns a + b;
+}
+
+2,3 --> exp 5
+
+call it, with given arguemnt and get actual return value
+
+Main purpose of JUNIT:
+	- Verifying logic
+	- Finding bugs early
+	- preventing future issues
+
+Core fundamental concepts:
+	1. Test case
+
+		A test case is a method that tests one behavior.
+
+
+	2. Assertions
+		Assertions are the heart of JUnit
+
+		They compare:
+			- Expected values
+			- Actual values
+
+		assertEquals
+		assertTrue
+		assertFalse
+		assertNull
+		assertNotNull
+		assertThrows
+
+		etc
+
+		int age = 20;
+
+		assertTrue(age>18)
+
+	3. Annotations
+
+		@Test --> Marks test method
+		@BeforeEach --> Runs before every test (creating fresh objects, initializaing data etc)
+		@AfterEach --> Runs after every test (cleanup, resetting state etc)
+		@BeforeAll --> Runs once before all tests (db connection, common setup)
+		@AfterAll --> Runs once after all tests (closing connections, final cleanup etc)
+
+	4. Test Runner
+
+		JUnit has a runner that:
+			- finds test methods
+			- Executes them
+			- shows results
+
+		
+
+
+
+
 =========================================================
 30/04/2026 
 =========================================================
